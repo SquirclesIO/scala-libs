@@ -20,3 +20,12 @@ lazy val must_back = (project in file("."))
 
 	// Disable javadoc packaging
 	mappings in (Compile, packageDoc) := Seq()
+
+	credentials += Credentials("Sonatype Nexus Repository Manager", "team.performance.immo", sys.env.get("NEXUS_USER").getOrElse(""), sys.env.get("NEXUS_PWD").getOrElse(""))
+
+	publishTo := {
+		val nexus = "https://team.performance.immo/nexus/repository"
+		
+		if (isSnapshot.value) Some("snapshots"  at nexus + "/maven-snapshots/")
+		else Some("releases" at nexus + "/maven-releases/")
+	}

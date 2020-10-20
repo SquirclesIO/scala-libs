@@ -1,12 +1,6 @@
-.deploy:
-  stage: deploy
-  image: debian:stable
-  before_script:
-    - env | sort
-
 stages:
   - test
-  - deploy
+  - publish
 
 test:
   image: hseeberger/scala-sbt:graalvm-ce-20.0.0-java11_1.3.13_2.13.3
@@ -19,9 +13,11 @@ test:
   script:
     - sbt -ivy .ivy2 clean test
 
-#deploy:snapshot:
-#  extends: .deploy
-#  environment:
-#    name: dev
-#  script:
-#    - clever-tools-latest_linux/clever deploy
+publish:
+  image: hseeberger/scala-sbt:graalvm-ce-20.0.0-java11_1.3.13_2.13.3
+  cache:
+    key: "$CI_PROJECT_NAME"
+    paths:
+      - .ivy2
+  script:
+    - sbt -ivy .ivy2 publish

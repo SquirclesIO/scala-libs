@@ -1,0 +1,3 @@
+-Dsbt.override.build.repos=true
+-Dsbt.repository.config=project/repositories.txt
+-mem 2048
