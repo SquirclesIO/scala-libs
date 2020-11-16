@@ -8,7 +8,7 @@ made by CI
 
 ## Install with sbt
 
-`"org.perfimmo" %% "pi-prelude" % "0.1-SNAPSHOT"`
+`"org.perfimmo" %% "pi-prelude" % "0.1.2-SNAPSHOT"`
 
 ## Exemples
 
