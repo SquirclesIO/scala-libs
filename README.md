@@ -15,3 +15,22 @@ made by CI
 ### SafeUUID
 
 ### NoCaseString
+
+### \/ a.k.a Disjonction a.k.a Bicovariant Either
+
+```scala
+import pi.prelude.either.\/._
+import zio.ZIO            
+import zio.prelude._
+
+val either = "toto".right[String]
+
+val result: ZIO[Any, String, String] =
+    either
+        .map { s => s"hello $s" }
+        .flatMap { x => x.right[String] }
+        .mapError { e => s"error: $e" }
+        .io
+        .map { s => s.right[String] }
+        .absolve
+```
