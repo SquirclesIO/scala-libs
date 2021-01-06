@@ -8,6 +8,7 @@ lazy val must_back = (project in file("."))
 		version := appVersion,
 		scalaVersion := versionOfScala,
 
+		scalacOptions += "-Wconf:cat=other-match-analysis:error",
 		scalacOptions ++= Seq("-language:postfixOps"),
 		scalacOptions ++= Seq("-deprecation", "-feature", "-unchecked"),
 		scalacOptions ++= Seq("-Xmaxerrs", "1000"),
