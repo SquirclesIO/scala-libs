@@ -6,7 +6,7 @@ import Dependencies._
 object ApplicationBuildConfig {
 	val groupId = "org.perfimmo"
 	val appName = "pi-prelude"
-	val appVersion = "0.1.9-SNAPSHOT"
+	val appVersion = "0.1.10-SNAPSHOT"
 	val versionOfScala = "2.13.3"
 
 	val appDependencies =
@@ -27,7 +27,8 @@ object Dependencies {
 		"dev.zio"                           %% "zio-streams"                        % zio_version,
 		//"dev.zio"                         %% "zio-interop-reactivestreams"                    % "1.0.3.5",
 		"dev.zio"                           %% "zio-prelude"                        % zio_prelude_version,
-		"dev.zio"                           %% "zio-json"                           % "0.1.5"
+		"dev.zio"                           %% "zio-json"                           % "0.1.5",
+		"dev.zio" 							%% "zio-json-interop-refined" 			% "0.2.0-M3"
 	)
 
 	val circeDeps = Seq(

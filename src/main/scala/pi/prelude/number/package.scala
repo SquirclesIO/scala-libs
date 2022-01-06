@@ -1,3 +1,3 @@
 package pi.prelude
 
-package object number extends PositiveDoubleModule
+package object number extends PositiveDoubleModule with PercentageModule
