@@ -23,3 +23,5 @@ publish:
       - .ivy2
   script:
     - sbt -ivy .ivy2 publish
+  except:
+   - tags
