@@ -11,4 +11,10 @@ package object safeio {
 	implicit class EitherOps[E, A](e: Either[E, A]) {
 		def zio: IO[E, A] = ZIO.fromEither(e)
 	}
+
+  implicit class ZIOOptOps[R, E, A](zio: ZIO[R, E, Option[A]]) {
+    def mapOpt[B](f: A => B): ZIO[R, E, Option[B]] = zio.map { _.map(f) }
+
+    def getOrElseOpt(f: A): ZIO[R, E, A] = zio.map { _.getOrElse(f) }
+  }
 }
