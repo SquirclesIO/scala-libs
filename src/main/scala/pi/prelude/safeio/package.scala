@@ -17,4 +17,8 @@ package object safeio {
 
     def getOrElseOpt(f: A): ZIO[R, E, A] = zio.map { _.getOrElse(f) }
   }
+
+  implicit class ZIOSeqOps[R, E, A](zio: ZIO[R, E, Seq[A]]) {
+    def mapSeq[B](f: A => B): ZIO[R, E, Seq[B]] = zio.map { _.map { f } }
+  }
 }
