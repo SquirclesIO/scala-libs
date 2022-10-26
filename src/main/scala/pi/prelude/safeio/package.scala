@@ -1,6 +1,6 @@
 package pi.prelude
 
-import zio.{IO, ZIO}
+import zio.{IO, UIO, ZIO}
 
 package object safeio {
 	// TODO a virer - comment faire du traverse avec zio prelude
@@ -12,13 +12,17 @@ package object safeio {
 		def zio: IO[E, A] = ZIO.fromEither(e)
 	}
 
-  implicit class ZIOOptOps[R, E, A](zio: ZIO[R, E, Option[A]]) {
-    def mapOpt[B](f: A => B): ZIO[R, E, Option[B]] = zio.map { _.map(f) }
+	implicit class ZIOBaseOps[A](x: A) {
+		def zio: UIO[A] = ZIO.succeed(x)
+	}
 
-    def getOrElseOpt(f: A): ZIO[R, E, A] = zio.map { _.getOrElse(f) }
-  }
+	implicit class ZIOOptOps[R, E, A](zio: ZIO[R, E, Option[A]]) {
+		def mapOpt[B](f: A => B): ZIO[R, E, Option[B]] = zio.map { _.map(f) }
 
-  implicit class ZIOSeqOps[R, E, A](zio: ZIO[R, E, Seq[A]]) {
-    def mapSeq[B](f: A => B): ZIO[R, E, Seq[B]] = zio.map { _.map { f } }
-  }
+		def getOrElseOpt(f: A): ZIO[R, E, A] = zio.map { _.getOrElse(f) }
+	}
+
+	implicit class ZIOSeqOps[R, E, A](zio: ZIO[R, E, Seq[A]]) {
+		def mapSeq[B](f: A => B): ZIO[R, E, Seq[B]] = zio.map { _.map { f } }
+	}
 }
