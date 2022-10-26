@@ -13,7 +13,7 @@ package object safeio {
 	}
 
 	implicit class ZIOBaseOps[A](x: A) {
-		def zio: UIO[A] = ZIO.succeed(x)
+		def zsucceed: UIO[A] = ZIO.succeed(x)
 	}
 
 	implicit class ZIOOptOps[R, E, A](zio: ZIO[R, E, Option[A]]) {
