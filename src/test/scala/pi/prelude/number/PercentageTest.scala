@@ -10,5 +10,7 @@ class PercentageTest extends AnyFunSuite with should.Matchers {
 		Percentage(100).map { _.value }  shouldBe Right(100D)
 		Percentage(101)  shouldBe Left("Right predicate of (!(101.0 < 0.0) && !(101.0 > 100.0)) failed: Predicate (101.0 > 100.0) did not fail.")
 		Percentage(-1)  shouldBe Left("Left predicate of (!(-1.0 < 0.0) && !(-1.0 > 100.0)) failed: Predicate (-1.0 < 0.0) did not fail.")
+
+		Percentage.build(42D).value shouldBe 42
 	}
 }

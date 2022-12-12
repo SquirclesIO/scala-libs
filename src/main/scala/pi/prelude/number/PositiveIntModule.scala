@@ -6,6 +6,8 @@ import eu.timepit.refined.{refineMV, refineV}
 
 private[number] trait PositiveIntModule {
 	/**
+	 * Int >= 0
+	 *
 	 * val p: PositiveInt = ???
 	 * val res: Int = p.value
 	 */
