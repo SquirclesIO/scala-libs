@@ -8,9 +8,6 @@ package object nel {
 	def nel[A](x: A, xs: A*): NonEmptyList[A] = NonEmptyList(x, xs:_*)
 
 	implicit class NELOps[A](xs: Seq[A]) {
-		def toNEL: Option[NonEmptyList[A]] = xs match {
-			case h :: t => Some(nel[A](h, t:_*))
-			case Nil => None
-		}
+		def toNEL: Option[NonEmptyList[A]] = xs.headOption.map { h => nel[A](h, xs.tail: _*) }
 	}
 }
