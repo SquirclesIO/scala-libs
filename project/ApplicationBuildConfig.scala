@@ -18,8 +18,8 @@ object ApplicationBuildConfig {
 }
 
 object Dependencies {
-	val zio_version = "1.0.1"
-	val zio_prelude_version = "1.0.0-RC1"
+	val zio_version = "1.0.9"
+	val zio_prelude_version = "1.0.0-RC5"
 	val circeVersion = "0.12.3"
 
 	val zioDependencies = Seq(

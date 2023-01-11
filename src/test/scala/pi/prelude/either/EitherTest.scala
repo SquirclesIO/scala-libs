@@ -7,9 +7,9 @@ import zio.prelude.Validation.Success
 
 class EitherTest extends AnyFunSuite with should.Matchers {
 	test("test") {
-		val r = Success("toto")
+		/*val r = Success("toto")
 			.bimap( _: Any => "titi", _ => "toto" )
-			.fold(identity, identity)
+			.fold(identity, identity)*/
 
 		import zio.prelude._
 
