@@ -12,12 +12,17 @@ package object safeio {
 		def zio: IO[E, A] = ZIO.fromEither(e)
 	}
 
+	implicit class OptionOps[R, E, A](o: Option[ZIO[R, E, A]]) {
+		def collectOptZ: ZIO[R, E, Option[A]] = zioCollectOpt(o)
+	}
+
 	implicit class ZIOBaseOps[A](x: A) {
 		def zsucceed: UIO[A] = ZIO.succeed(x)
 	}
 
 	implicit class ZIOOptOps[R, E, A](zio: ZIO[R, E, Option[A]]) {
 		def mapOpt[B](f: A => B): ZIO[R, E, Option[B]] = zio.map { _.map(f) }
+		def flatMapOpt[B](f: A => ZIO[R, E, B]): ZIO[R, E, Option[B]] = zio.flatMap { opt => zioCollectOpt(opt.map(f)) }
 
 		def getOrElseOpt(f: A): ZIO[R, E, A] = zio.map { _.getOrElse(f) }
 	}
