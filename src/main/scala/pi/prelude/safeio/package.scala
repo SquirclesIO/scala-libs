@@ -20,14 +20,14 @@ package object safeio {
 		def zsucceed: UIO[A] = ZIO.succeed(x)
 	}
 
-	implicit class ZIOOptOps[R, E, A](zio: ZIO[R, E, Option[A]]) {
+	implicit class ZIOOptOps[R, E, +A](zio: ZIO[R, E, Option[A]]) {
 		def mapOpt[B](f: A => B): ZIO[R, E, Option[B]] = zio.map { _.map(f) }
 		def flatMapOpt[B](f: A => ZIO[R, E, B]): ZIO[R, E, Option[B]] = zio.flatMap { opt => zioCollectOpt(opt.map(f)) }
 
-		def getOrElseOpt(f: A): ZIO[R, E, A] = zio.map { _.getOrElse(f) }
+		def getOrElseOpt[AA >: A](f: AA): ZIO[R, E, AA] = zio.map { _.getOrElse(f) }
 	}
 
-	implicit class ZIOSeqOps[R, E, A](zio: ZIO[R, E, Seq[A]]) {
+	implicit class ZIOSeqOps[R, E, +A](zio: ZIO[R, E, Seq[A]]) {
 		def mapSeq[B](f: A => B): ZIO[R, E, Seq[B]] = zio.map { _.map { f } }
 	}
 }
