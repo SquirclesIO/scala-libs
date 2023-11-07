@@ -6,7 +6,7 @@ import Dependencies._
 object ApplicationBuildConfig {
 	val groupId = "org.perfimmo"
 	val appName = "pi-prelude"
-	val appVersion = "0.1.13"
+	val appVersion = "1.0.0"
 	val versionOfScala = "2.13.3"
 
 	val appDependencies =
