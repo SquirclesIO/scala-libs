@@ -3,7 +3,9 @@ package pi.prelude.string
 import zio.prelude.Subtype
 
 private[string] trait LoginModule {
-	private [LoginModule] object LoginT extends Subtype[String]
+	private [LoginModule] object LoginT extends Subtype[String] {
+		override def wrap(login: String): Login = super.wrap(login)
+	}
 	type Login = LoginT.Type
 
 	object Login {

@@ -3,7 +3,9 @@ package pi.prelude.string
 import zio.prelude.Newtype
 
 private [string] trait NoCaseStringModule { // TODO use Subtype instead of Newtype
-	private [NoCaseStringModule] object NoCaseStringT extends Newtype[String]
+	private [NoCaseStringModule] object NoCaseStringT extends Newtype[String] {
+		override def wrap(s: String): NoCaseString = super.wrap(s)
+	}
 
 	type NoCaseString = NoCaseStringT.Type
 

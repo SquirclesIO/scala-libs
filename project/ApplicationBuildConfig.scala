@@ -18,8 +18,8 @@ object ApplicationBuildConfig {
 }
 
 object Dependencies {
-	val zio_version = "1.0.9"
-	val zio_prelude_version = "1.0.0-RC5"
+	val zio_version = "2.0.18"
+	val zio_prelude_version = "1.0.0-RC21"
 	val circeVersion = "0.12.3"
 
 	val zioDependencies = Seq(
@@ -27,8 +27,8 @@ object Dependencies {
 		"dev.zio"                           %% "zio-streams"                        % zio_version,
 		//"dev.zio"                         %% "zio-interop-reactivestreams"                    % "1.0.3.5",
 		"dev.zio"                           %% "zio-prelude"                        % zio_prelude_version,
-		"dev.zio"                           %% "zio-json"                           % "0.1.5",
-		"dev.zio" 							%% "zio-json-interop-refined" 			% "0.2.0-M3"
+		"dev.zio"                           %% "zio-json"                           % "0.6.2",
+		"dev.zio" 							            %% "zio-json-interop-refined" 			    % "0.6.2"
 	)
 
 	val circeDeps = Seq(

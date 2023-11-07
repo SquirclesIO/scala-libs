@@ -3,7 +3,9 @@ package pi.prelude.number
 import zio.prelude.Newtype
 
 private[number] trait PositiveDoubleModule {
-	private [PositiveDoubleModule] object PositiveDoubleT extends Newtype[Double]
+	private [PositiveDoubleModule] object PositiveDoubleT extends Newtype[Double] {
+		override def wrap(d: Double): PositiveDouble = super.wrap(d)
+	}
 
 	type PositiveDouble = PositiveDoubleT.Type
 
