@@ -6,13 +6,13 @@ test:
   stage: test
   image: hseeberger/scala-sbt:graalvm-ce-20.0.0-java11_1.3.13_2.13.3
   variables:
-    SCALA_VERSION: 2.13.3
+    SCALA_VERSION: 2.13.12
   cache:
     key: "$CI_PROJECT_NAME"
     paths:
       - .ivy2
   script:
-    - sbt -ivy .ivy2 clean test
+    - sbt -ivy .ivy2 "+ clean; + test"
 
 publish:
   stage: publish
@@ -22,6 +22,6 @@ publish:
     paths:
       - .ivy2
   script:
-    - sbt -ivy .ivy2 publish
+    - sbt -ivy .ivy2 "+ publish"
   except:
    - tags
