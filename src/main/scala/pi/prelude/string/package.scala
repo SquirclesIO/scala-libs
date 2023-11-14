@@ -1,6 +1,6 @@
 package pi.prelude
 
 package object string
-	extends NoCaseStringModule
-	with PrintClassNameOps
-	with LoginModule
+    extends NoCaseStringModule
+    with PrintClassNameOps
+    with LoginModule

@@ -7,7 +7,7 @@ object ApplicationBuildConfig {
 	val groupId = "org.perfimmo"
 	val appName = "pi-prelude"
 	val appVersion = "1.0.1"
-	val versionOfScala = "2.13.3"
+	val versionOfScala = "2.13.12"
 
 	val appDependencies =
 		zioDependencies ++

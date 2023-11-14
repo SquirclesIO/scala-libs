@@ -5,21 +5,21 @@ import eu.timepit.refined.numeric.GreaterEqual
 import eu.timepit.refined.{refineMV, refineV}
 
 private[number] trait PositiveIntModule {
-	/**
-	 * Int >= 0
-	 *
-	 * val p: PositiveInt = ???
-	 * val res: Int = p.value
-	 */
-	type PositiveInt = Int Refined PositiveIntPredicate
 
-	type PositiveIntPredicate = GreaterEqual[0]
+    /** Int >= 0
+      *
+      * val p: PositiveInt = ??? val res: Int = p.value
+      */
+    type PositiveInt = Int Refined PositiveIntPredicate
 
-	object PositiveInt {
-		/** vérification à la compilation */
-		val build = refineMV[PositiveIntPredicate]
+    type PositiveIntPredicate = GreaterEqual[0]
 
-		/** évaluation au runtime */
-		def eval(v: Int): Either[String, PositiveInt] = refineV(v)
-	}
+    object PositiveInt {
+
+        /** vérification à la compilation */
+        val build = refineMV[PositiveIntPredicate]
+
+        /** évaluation au runtime */
+        def eval(v: Int): Either[String, PositiveInt] = refineV(v)
+    }
 }

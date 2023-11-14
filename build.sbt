@@ -8,9 +8,13 @@ lazy val must_back = (project in file("."))
 		version := appVersion,
 		scalaVersion := versionOfScala,
 
+        // Scalafix config
+        semanticdbEnabled := true, // enable SemanticDB
+        semanticdbVersion := scalafixSemanticdb.revision, // only required for Scala 2.x
+
 		scalacOptions += "-Wconf:cat=other-match-analysis:error",
 		scalacOptions ++= Seq("-language:postfixOps"),
-		scalacOptions ++= Seq("-deprecation", "-feature", "-unchecked"),
+		scalacOptions ++= Seq("-deprecation", "-feature", "-unchecked", "-Wunused"),
 		scalacOptions ++= Seq("-Xmaxerrs", "1000"),
 		scalacOptions ++= Seq("-Xmaxwarns", "1000"),
 

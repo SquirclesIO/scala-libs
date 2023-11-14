@@ -5,66 +5,66 @@ import zio.ZIO
 import zio.prelude.{Bicovariant, Covariant}
 
 package object either {
-	sealed trait \/[+E, +A] { self =>
-		private final def map0[B](f: A => B): \/[E, B] =
-			self match {
-				case \/-(a)           => \/-(f(a))
-				case error @ -\/(_) => error
-			}
+    sealed trait \/[+E, +A] { self =>
+        private final def map0[B](f: A => B): \/[E, B] =
+            self match {
+                case \/-(a)         => \/-(f(a))
+                case error @ -\/(_) => error
+            }
 
-		private final def mapError0[F](f: E => F): \/[F, A] =
-			self match {
-				case -\/(e)          => -\/(f(e))
-				case success @ \/-(_) => success
-			}
-		
-		def toEither: Either[E, A] = self match {
-			case \/.-\/(e) => Left(e)
-			case \/.\/-(x) => Right(x)
-		}
-	}
+        private final def mapError0[F](f: E => F): \/[F, A] =
+            self match {
+                case -\/(e)           => -\/(f(e))
+                case success @ \/-(_) => success
+            }
 
-	object \/ {
-		final case class -\/[+E](e: E) extends (E \/ Nothing)
-		final case class \/-[+A](x: A) extends (Nothing \/ A)
+        def toEither: Either[E, A] = self match {
+            case \/.-\/(e) => Left(e)
+            case \/.\/-(x) => Right(x)
+        }
+    }
 
-		def fromEither[E, A](e: Either[E, A]): E \/ A = e match {
-			case Left(value) => -\/(value)
-			case Right(value) => \/-(value)
-		}
+    object \/ {
+        final case class -\/[+E](e: E) extends (E \/ Nothing)
+        final case class \/-[+A](x: A) extends (Nothing \/ A)
 
-		def fromOption[E, A](ifNone: => E)(o: Option[A]): E \/ A = o.map(\/-(_)).getOrElse(-\/(ifNone))
+        def fromEither[E, A](e: Either[E, A]): E \/ A = e match {
+            case Left(value)  => -\/(value)
+            case Right(value) => \/-(value)
+        }
 
-		implicit def EitherBicovariant: Bicovariant[\/] = new Bicovariant[\/] {
-			override def bimap[A, B, AA, BB](f: A => AA, g: B => BB): A \/ B => AA \/ BB =
-				_.mapError0(f).map0(g)
-		}
+        def fromOption[E, A](ifNone: => E)(o: Option[A]): E \/ A = o.map(\/-(_)).getOrElse(-\/(ifNone))
 
-		implicit def EitherCovariant[E]: Covariant[({ type lambda[+x] = \/[E, x] })#lambda] =
-			new Covariant[({ type lambda[+x] = \/[E, x] })#lambda] {
-				override def map[A, B](f: A => B): E \/ A => E \/ B = _.map0(f)
-			}
+        implicit def EitherBicovariant: Bicovariant[\/] = new Bicovariant[\/] {
+            override def bimap[A, B, AA, BB](f: A => AA, g: B => BB): A \/ B => AA \/ BB =
+                _.mapError0(f).map0(g)
+        }
 
-		/*
+        implicit def EitherCovariant[E]: Covariant[({ type lambda[+x] = \/[E, x] })#lambda] =
+            new Covariant[({ type lambda[+x] = \/[E, x] })#lambda] {
+                override def map[A, B](f: A => B): E \/ A => E \/ B = _.map0(f)
+            }
+
+        /*
 		implicit def ValidationFailureCovariant[A]
     : Covariant[({ type lambda[+x] = newtypes.Failure[Validation[x, A]] })#lambda] =
     new Covariant[({ type lambda[+x] = newtypes.Failure[Validation[x, A]] })#lambda] {
       def map[E, E1](f: E => E1): newtypes.Failure[Validation[E, A]] => newtypes.Failure[Validation[E1, A]] =
         validation => newtypes.Failure.wrap(newtypes.Failure.unwrap(validation).mapError(f))
     }
-		 */
+         */
 
-		implicit class ZEitherOps[A](private val x: A) extends AnyVal {
-			def left[B]: A \/ B = -\/(x)
-			def right[B]: B \/ A = \/-(x)
-		}
+        implicit class ZEitherOps[A](private val x: A) extends AnyVal {
+            def left[B]: A \/ B = -\/(x)
+            def right[B]: B \/ A = \/-(x)
+        }
 
-		implicit class EitherToZIOOps[E, A](private val x: E \/ A) extends AnyVal {
-			def io: ZIO[Any, E, A] = ZIO.fromEither(x.toEither)
-		}
+        implicit class EitherToZIOOps[E, A](private val x: E \/ A) extends AnyVal {
+            def io: ZIO[Any, E, A] = ZIO.fromEither(x.toEither)
+        }
 
-		implicit class ZIOAbsolveOps[R, E, A](private val z: ZIO[R, E, E \/ A]) extends AnyVal {
-			def absolve: ZIO[R, E, A] = z.map(_.toEither).absolve
-		}
-	}
+        implicit class ZIOAbsolveOps[R, E, A](private val z: ZIO[R, E, E \/ A]) extends AnyVal {
+            def absolve: ZIO[R, E, A] = z.map(_.toEither).absolve
+        }
+    }
 }

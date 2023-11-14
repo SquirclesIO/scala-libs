@@ -3,305 +3,293 @@ package pi.prelude.data.ref
 import zio.prelude.Subtype
 
 object PaysRef {
-	object CodePays extends Subtype[String]
-	type CodePays = CodePays.Type
+    object CodePays extends Subtype[String]
+    type CodePays = CodePays.Type
 
-	object LabelPays extends Subtype[String]
-	type LabelPays = LabelPays.Type
-	/**
-	 * Liste des pays en français
-	 *
-	 * [("AF", "Afghanistan")
-	 * , ("ZA", "Afrique du Sud")
-	 * , ("AL", "Albanie")
-	 * , ("DZ", "Algérie")
-	 * ...
-	 * , ("US", "États-Unis")
-	 * ...
-	 * , ("FR", "France")
-	 * ]
-	 *
-	 */
-	val listePays: Map[CodePays, LabelPays] = Map(
-		(CodePays("AF"), LabelPays("Afghanistan"))
-		, (CodePays("ZA"), LabelPays("Afrique du Sud"))
-		, (CodePays("AL"), LabelPays("Albanie"))
-		, (CodePays("DZ"), LabelPays("Algérie"))
-		, (CodePays("DE"), LabelPays("Allemagne"))
-		, (CodePays("AD"), LabelPays("Andorre"))
-		, (CodePays("AO"), LabelPays("Angola"))
-		, (CodePays("AI"), LabelPays("Anguilla"))
-		, (CodePays("AQ"), LabelPays("Antarctique"))
-		, (CodePays("AG"), LabelPays("Antigua-et-Barbuda"))
-		, (CodePays("AN"), LabelPays("Antilles néerlandaises"))
-		, (CodePays("SA"), LabelPays("Arabie saoudite"))
-		, (CodePays("AR"), LabelPays("Argentine"))
-		, (CodePays("AM"), LabelPays("Arménie"))
-		, (CodePays("AW"), LabelPays("Aruba"))
-		, (CodePays("AU"), LabelPays("Australie"))
-		, (CodePays("AT"), LabelPays("Autriche"))
-		, (CodePays("AZ"), LabelPays("Azerbaïdjan"))
-		, (CodePays("BS"), LabelPays("Bahamas"))
-		, (CodePays("BH"), LabelPays("Bahreïn"))
-		, (CodePays("BD"), LabelPays("Bangladesh"))
-		, (CodePays("BB"), LabelPays("Barbade"))
-		, (CodePays("BY"), LabelPays("Bélarus"))
-		, (CodePays("BE"), LabelPays("Belgique"))
-		, (CodePays("BZ"), LabelPays("Belize"))
-		, (CodePays("BJ"), LabelPays("Bénin"))
-		, (CodePays("BM"), LabelPays("Bermudes"))
-		, (CodePays("BT"), LabelPays("Bhoutan"))
-		, (CodePays("BO"), LabelPays("Bolivie"))
-		, (CodePays("BA"), LabelPays("Bosnie-Herzégovine"))
-		, (CodePays("BW"), LabelPays("Botswana"))
-		, (CodePays("BR"), LabelPays("Brésil"))
-		, (CodePays("BN"), LabelPays("Brunéi Darussalam"))
-		, (CodePays("BG"), LabelPays("Bulgarie"))
-		, (CodePays("BF"), LabelPays("Burkina Faso"))
-		, (CodePays("BI"), LabelPays("Burundi"))
-		, (CodePays("KH"), LabelPays("Cambodge"))
-		, (CodePays("CM"), LabelPays("Cameroun"))
-		, (CodePays("CA"), LabelPays("Canada"))
-		, (CodePays("CV"), LabelPays("Cap-Vert"))
-		, (CodePays("EA"), LabelPays("Ceuta et Melilla"))
-		, (CodePays("CL"), LabelPays("Chili"))
-		, (CodePays("CN"), LabelPays("Chine"))
-		, (CodePays("CY"), LabelPays("Chypre"))
-		, (CodePays("CO"), LabelPays("Colombie"))
-		, (CodePays("KM"), LabelPays("Comores"))
-		, (CodePays("CG"), LabelPays("Congo-Brazzaville"))
-		, (CodePays("KP"), LabelPays("Corée du Nord"))
-		, (CodePays("KR"), LabelPays("Corée du Sud"))
-		, (CodePays("CR"), LabelPays("Costa Rica"))
-		, (CodePays("CI"), LabelPays("Côte d’Ivoire"))
-		, (CodePays("HR"), LabelPays("Croatie"))
-		, (CodePays("CU"), LabelPays("Cuba"))
-		, (CodePays("DK"), LabelPays("Danemark"))
-		, (CodePays("DG"), LabelPays("Diego Garcia"))
-		, (CodePays("DJ"), LabelPays("Djibouti"))
-		, (CodePays("DM"), LabelPays("Dominique"))
-		, (CodePays("EG"), LabelPays("Égypte"))
-		, (CodePays("SV"), LabelPays("El Salvador"))
-		, (CodePays("AE"), LabelPays("Émirats arabes unis"))
-		, (CodePays("EC"), LabelPays("Équateur"))
-		, (CodePays("ER"), LabelPays("Érythrée"))
-		, (CodePays("ES"), LabelPays("Espagne"))
-		, (CodePays("EE"), LabelPays("Estonie"))
-		, (CodePays("VA"), LabelPays("État de la Cité du Vatican"))
-		, (CodePays("FM"), LabelPays("États fédérés de Micronésie"))
-		, (CodePays("US"), LabelPays("États-Unis"))
-		, (CodePays("ET"), LabelPays("Éthiopie"))
-		, (CodePays("FJ"), LabelPays("Fidji"))
-		, (CodePays("FI"), LabelPays("Finlande"))
-		, (CodePays("FR"), LabelPays("France"))
-		, (CodePays("GA"), LabelPays("Gabon"))
-		, (CodePays("GM"), LabelPays("Gambie"))
-		, (CodePays("GE"), LabelPays("Géorgie"))
-		, (CodePays("GS"), LabelPays("Géorgie du Sud et les îles Sandwich du Sud"))
-		, (CodePays("GH"), LabelPays("Ghana"))
-		, (CodePays("GI"), LabelPays("Gibraltar"))
-		, (CodePays("GR"), LabelPays("Grèce"))
-		, (CodePays("GD"), LabelPays("Grenade"))
-		, (CodePays("GL"), LabelPays("Groenland"))
-		, (CodePays("GP"), LabelPays("Guadeloupe"))
-		, (CodePays("GU"), LabelPays("Guam"))
-		, (CodePays("GT"), LabelPays("Guatemala"))
-		, (CodePays("GG"), LabelPays("Guernesey"))
-		, (CodePays("GN"), LabelPays("Guinée"))
-		, (CodePays("GQ"), LabelPays("Guinée équatoriale"))
-		, (CodePays("GW"), LabelPays("Guinée-Bissau"))
-		, (CodePays("GY"), LabelPays("Guyana"))
-		, (CodePays("GF"), LabelPays("Guyane française"))
-		, (CodePays("HT"), LabelPays("Haïti"))
-		, (CodePays("HN"), LabelPays("Honduras"))
-		, (CodePays("HU"), LabelPays("Hongrie"))
-		, (CodePays("BV"), LabelPays("Île Bouvet"))
-		, (CodePays("CX"), LabelPays("Île Christmas"))
-		, (CodePays("CP"), LabelPays("Île Clipperton"))
-		, (CodePays("AC"), LabelPays("Île de l'Ascension"))
-		, (CodePays("IM"), LabelPays("Île de Man"))
-		, (CodePays("NF"), LabelPays("Île Norfolk"))
-		, (CodePays("AX"), LabelPays("Îles Åland"))
-		, (CodePays("KY"), LabelPays("Îles Caïmans"))
-		, (CodePays("IC"), LabelPays("Îles Canaries"))
-		, (CodePays("CC"), LabelPays("Îles Cocos - Keeling"))
-		, (CodePays("CK"), LabelPays("Îles Cook"))
-		, (CodePays("FO"), LabelPays("Îles Féroé"))
-		, (CodePays("HM"), LabelPays("Îles Heard et MacDonald"))
-		, (CodePays("FK"), LabelPays("Îles Malouines"))
-		, (CodePays("MP"), LabelPays("Îles Mariannes du Nord"))
-		, (CodePays("MH"), LabelPays("Îles Marshall"))
-		, (CodePays("UM"), LabelPays("Îles Mineures Éloignées des États-Unis"))
-		, (CodePays("SB"), LabelPays("Îles Salomon"))
-		, (CodePays("TC"), LabelPays("Îles Turks et Caïques"))
-		, (CodePays("VG"), LabelPays("Îles Vierges britanniques"))
-		, (CodePays("VI"), LabelPays("Îles Vierges des États-Unis"))
-		, (CodePays("IN"), LabelPays("Inde"))
-		, (CodePays("ID"), LabelPays("Indonésie"))
-		, (CodePays("IQ"), LabelPays("Irak"))
-		, (CodePays("IR"), LabelPays("Iran"))
-		, (CodePays("IE"), LabelPays("Irlande"))
-		, (CodePays("IS"), LabelPays("Islande"))
-		, (CodePays("IL"), LabelPays("Israël"))
-		, (CodePays("IT"), LabelPays("Italie"))
-		, (CodePays("JM"), LabelPays("Jamaïque"))
-		, (CodePays("JP"), LabelPays("Japon"))
-		, (CodePays("JE"), LabelPays("Jersey"))
-		, (CodePays("JO"), LabelPays("Jordanie"))
-		, (CodePays("KZ"), LabelPays("Kazakhstan"))
-		, (CodePays("KE"), LabelPays("Kenya"))
-		, (CodePays("KG"), LabelPays("Kirghizistan"))
-		, (CodePays("KI"), LabelPays("Kiribati"))
-		, (CodePays("KW"), LabelPays("Koweït"))
-		, (CodePays("LA"), LabelPays("Laos"))
-		, (CodePays("LS"), LabelPays("Lesotho"))
-		, (CodePays("LV"), LabelPays("Lettonie"))
-		, (CodePays("LB"), LabelPays("Liban"))
-		, (CodePays("LR"), LabelPays("Libéria"))
-		, (CodePays("LY"), LabelPays("Libye"))
-		, (CodePays("LI"), LabelPays("Liechtenstein"))
-		, (CodePays("LT"), LabelPays("Lituanie"))
-		, (CodePays("LU"), LabelPays("Luxembourg"))
-		, (CodePays("MK"), LabelPays("Macédoine"))
-		, (CodePays("MG"), LabelPays("Madagascar"))
-		, (CodePays("MY"), LabelPays("Malaisie"))
-		, (CodePays("MW"), LabelPays("Malawi"))
-		, (CodePays("MV"), LabelPays("Maldives"))
-		, (CodePays("ML"), LabelPays("Mali"))
-		, (CodePays("MT"), LabelPays("Malte"))
-		, (CodePays("MA"), LabelPays("Maroc"))
-		, (CodePays("MQ"), LabelPays("Martinique"))
-		, (CodePays("MU"), LabelPays("Maurice"))
-		, (CodePays("MR"), LabelPays("Mauritanie"))
-		, (CodePays("YT"), LabelPays("Mayotte"))
-		, (CodePays("MX"), LabelPays("Mexique"))
-		, (CodePays("MD"), LabelPays("Moldavie"))
-		, (CodePays("MC"), LabelPays("Monaco"))
-		, (CodePays("MN"), LabelPays("Mongolie"))
-		, (CodePays("ME"), LabelPays("Monténégro"))
-		, (CodePays("MS"), LabelPays("Montserrat"))
-		, (CodePays("MZ"), LabelPays("Mozambique"))
-		, (CodePays("MM"), LabelPays("Myanmar"))
-		, (CodePays("NA"), LabelPays("Namibie"))
-		, (CodePays("NR"), LabelPays("Nauru"))
-		, (CodePays("NP"), LabelPays("Népal"))
-		, (CodePays("NI"), LabelPays("Nicaragua"))
-		, (CodePays("NE"), LabelPays("Niger"))
-		, (CodePays("NG"), LabelPays("Nigéria"))
-		, (CodePays("NU"), LabelPays("Niue"))
-		, (CodePays("NO"), LabelPays("Norvège"))
-		, (CodePays("NC"), LabelPays("Nouvelle-Calédonie"))
-		, (CodePays("NZ"), LabelPays("Nouvelle-Zélande"))
-		, (CodePays("OM"), LabelPays("Oman"))
-		, (CodePays("UG"), LabelPays("Ouganda"))
-		, (CodePays("UZ"), LabelPays("Ouzbékistan"))
-		, (CodePays("PK"), LabelPays("Pakistan"))
-		, (CodePays("PW"), LabelPays("Palaos"))
-		, (CodePays("PA"), LabelPays("Panama"))
-		, (CodePays("PG"), LabelPays("Papouasie-Nouvelle-Guinée"))
-		, (CodePays("PY"), LabelPays("Paraguay"))
-		, (CodePays("NL"), LabelPays("Pays-Bas"))
-		, (CodePays("PE"), LabelPays("Pérou"))
-		, (CodePays("PH"), LabelPays("Philippines"))
-		, (CodePays("PN"), LabelPays("Pitcairn"))
-		, (CodePays("PL"), LabelPays("Pologne"))
-		, (CodePays("PF"), LabelPays("Polynésie française"))
-		, (CodePays("PR"), LabelPays("Porto Rico"))
-		, (CodePays("PT"), LabelPays("Portugal"))
-		, (CodePays("QA"), LabelPays("Qatar"))
-		, (CodePays("HK"), LabelPays("R.A.S. chinoise de Hong Kong"))
-		, (CodePays("MO"), LabelPays("R.A.S. chinoise de Macao"))
-		, (CodePays("QO"), LabelPays("régions éloignées de l’Océanie"))
-		, (CodePays("CF"), LabelPays("République centrafricaine"))
-		, (CodePays("CD"), LabelPays("République démocratique du Congo"))
-		, (CodePays("DO"), LabelPays("République dominicaine"))
-		, (CodePays("CZ"), LabelPays("République tchèque"))
-		, (CodePays("RE"), LabelPays("Réunion"))
-		, (CodePays("RO"), LabelPays("Roumanie"))
-		, (CodePays("GB"), LabelPays("Royaume-Uni"))
-		, (CodePays("RU"), LabelPays("Russie"))
-		, (CodePays("RW"), LabelPays("Rwanda"))
-		, (CodePays("EH"), LabelPays("Sahara occidental"))
-		, (CodePays("BL"), LabelPays("Saint-Barthélémy"))
-		, (CodePays("KN"), LabelPays("Saint-Kitts-et-Nevis"))
-		, (CodePays("SM"), LabelPays("Saint-Marin"))
-		, (CodePays("MF"), LabelPays("Saint-Martin"))
-		, (CodePays("PM"), LabelPays("Saint-Pierre-et-Miquelon"))
-		, (CodePays("VC"), LabelPays("Saint-Vincent-et-les Grenadines"))
-		, (CodePays("SH"), LabelPays("Sainte-Hélène"))
-		, (CodePays("LC"), LabelPays("Sainte-Lucie"))
-		, (CodePays("WS"), LabelPays("Samoa"))
-		, (CodePays("AS"), LabelPays("Samoa américaines"))
-		, (CodePays("ST"), LabelPays("Sao Tomé-et-Principe"))
-		, (CodePays("SN"), LabelPays("Sénégal"))
-		, (CodePays("RS"), LabelPays("Serbie"))
-		, (CodePays("CS"), LabelPays("Serbie-et-Monténégro"))
-		, (CodePays("SC"), LabelPays("Seychelles"))
-		, (CodePays("SL"), LabelPays("Sierra Leone"))
-		, (CodePays("SG"), LabelPays("Singapour"))
-		, (CodePays("SK"), LabelPays("Slovaquie"))
-		, (CodePays("SI"), LabelPays("Slovénie"))
-		, (CodePays("SO"), LabelPays("Somalie"))
-		, (CodePays("SD"), LabelPays("Soudan"))
-		, (CodePays("LK"), LabelPays("Sri Lanka"))
-		, (CodePays("SE"), LabelPays("Suède"))
-		, (CodePays("CH"), LabelPays("Suisse"))
-		, (CodePays("SR"), LabelPays("Suriname"))
-		, (CodePays("SJ"), LabelPays("Svalbard et Île Jan Mayen"))
-		, (CodePays("SZ"), LabelPays("Swaziland"))
-		, (CodePays("SY"), LabelPays("Syrie"))
-		, (CodePays("TJ"), LabelPays("Tadjikistan"))
-		, (CodePays("TW"), LabelPays("Taïwan"))
-		, (CodePays("TZ"), LabelPays("Tanzanie"))
-		, (CodePays("TD"), LabelPays("Tchad"))
-		, (CodePays("TF"), LabelPays("Terres australes françaises"))
-		, (CodePays("IO"), LabelPays("Territoire britannique de l'océan Indien"))
-		, (CodePays("PS"), LabelPays("Territoire palestinien"))
-		, (CodePays("TH"), LabelPays("Thaïlande"))
-		, (CodePays("TL"), LabelPays("Timor oriental"))
-		, (CodePays("TG"), LabelPays("Togo"))
-		, (CodePays("TK"), LabelPays("Tokelau"))
-		, (CodePays("TO"), LabelPays("Tonga"))
-		, (CodePays("TT"), LabelPays("Trinité-et-Tobago"))
-		, (CodePays("TA"), LabelPays("Tristan da Cunha"))
-		, (CodePays("TN"), LabelPays("Tunisie"))
-		, (CodePays("TM"), LabelPays("Turkménistan"))
-		, (CodePays("TR"), LabelPays("Turquie"))
-		, (CodePays("TV"), LabelPays("Tuvalu"))
-		, (CodePays("UA"), LabelPays("Ukraine"))
-		, (CodePays("EU"), LabelPays("Union européenne"))
-		, (CodePays("UY"), LabelPays("Uruguay"))
-		, (CodePays("VU"), LabelPays("Vanuatu"))
-		, (CodePays("VE"), LabelPays("Venezuela"))
-		, (CodePays("VN"), LabelPays("Viêt Nam"))
-		, (CodePays("WF"), LabelPays("Wallis-et-Futuna"))
-		, (CodePays("YE"), LabelPays("Yémen"))
-		, (CodePays("ZM"), LabelPays("Zambie"))
-		, (CodePays("ZW"), LabelPays("Zimbabwe"))
-	)
+    object LabelPays extends Subtype[String]
+    type LabelPays = LabelPays.Type
 
-	/**
-	 * fromCodeToPays()(CodePays("US")) == Some(LabelPays("États-Unis"))
-	 *
-	 * @param ref
-	 * @param code
-	 * @return
-	 */
-	def fromCodeToPays(ref: Map[CodePays, LabelPays] = listePays)
-	                  (code: CodePays): Option[LabelPays] = ref.get(code)
+    /** Liste des pays en français
+      *
+      * [("AF", "Afghanistan") , ("ZA", "Afrique du Sud") , ("AL", "Albanie") , ("DZ", "Algérie") ... , ("US", "États-Unis") ... , ("FR",
+      * "France") ]
+      */
+    val listePays: Map[CodePays, LabelPays] = Map(
+        (CodePays("AF"), LabelPays("Afghanistan")),
+        (CodePays("ZA"), LabelPays("Afrique du Sud")),
+        (CodePays("AL"), LabelPays("Albanie")),
+        (CodePays("DZ"), LabelPays("Algérie")),
+        (CodePays("DE"), LabelPays("Allemagne")),
+        (CodePays("AD"), LabelPays("Andorre")),
+        (CodePays("AO"), LabelPays("Angola")),
+        (CodePays("AI"), LabelPays("Anguilla")),
+        (CodePays("AQ"), LabelPays("Antarctique")),
+        (CodePays("AG"), LabelPays("Antigua-et-Barbuda")),
+        (CodePays("AN"), LabelPays("Antilles néerlandaises")),
+        (CodePays("SA"), LabelPays("Arabie saoudite")),
+        (CodePays("AR"), LabelPays("Argentine")),
+        (CodePays("AM"), LabelPays("Arménie")),
+        (CodePays("AW"), LabelPays("Aruba")),
+        (CodePays("AU"), LabelPays("Australie")),
+        (CodePays("AT"), LabelPays("Autriche")),
+        (CodePays("AZ"), LabelPays("Azerbaïdjan")),
+        (CodePays("BS"), LabelPays("Bahamas")),
+        (CodePays("BH"), LabelPays("Bahreïn")),
+        (CodePays("BD"), LabelPays("Bangladesh")),
+        (CodePays("BB"), LabelPays("Barbade")),
+        (CodePays("BY"), LabelPays("Bélarus")),
+        (CodePays("BE"), LabelPays("Belgique")),
+        (CodePays("BZ"), LabelPays("Belize")),
+        (CodePays("BJ"), LabelPays("Bénin")),
+        (CodePays("BM"), LabelPays("Bermudes")),
+        (CodePays("BT"), LabelPays("Bhoutan")),
+        (CodePays("BO"), LabelPays("Bolivie")),
+        (CodePays("BA"), LabelPays("Bosnie-Herzégovine")),
+        (CodePays("BW"), LabelPays("Botswana")),
+        (CodePays("BR"), LabelPays("Brésil")),
+        (CodePays("BN"), LabelPays("Brunéi Darussalam")),
+        (CodePays("BG"), LabelPays("Bulgarie")),
+        (CodePays("BF"), LabelPays("Burkina Faso")),
+        (CodePays("BI"), LabelPays("Burundi")),
+        (CodePays("KH"), LabelPays("Cambodge")),
+        (CodePays("CM"), LabelPays("Cameroun")),
+        (CodePays("CA"), LabelPays("Canada")),
+        (CodePays("CV"), LabelPays("Cap-Vert")),
+        (CodePays("EA"), LabelPays("Ceuta et Melilla")),
+        (CodePays("CL"), LabelPays("Chili")),
+        (CodePays("CN"), LabelPays("Chine")),
+        (CodePays("CY"), LabelPays("Chypre")),
+        (CodePays("CO"), LabelPays("Colombie")),
+        (CodePays("KM"), LabelPays("Comores")),
+        (CodePays("CG"), LabelPays("Congo-Brazzaville")),
+        (CodePays("KP"), LabelPays("Corée du Nord")),
+        (CodePays("KR"), LabelPays("Corée du Sud")),
+        (CodePays("CR"), LabelPays("Costa Rica")),
+        (CodePays("CI"), LabelPays("Côte d’Ivoire")),
+        (CodePays("HR"), LabelPays("Croatie")),
+        (CodePays("CU"), LabelPays("Cuba")),
+        (CodePays("DK"), LabelPays("Danemark")),
+        (CodePays("DG"), LabelPays("Diego Garcia")),
+        (CodePays("DJ"), LabelPays("Djibouti")),
+        (CodePays("DM"), LabelPays("Dominique")),
+        (CodePays("EG"), LabelPays("Égypte")),
+        (CodePays("SV"), LabelPays("El Salvador")),
+        (CodePays("AE"), LabelPays("Émirats arabes unis")),
+        (CodePays("EC"), LabelPays("Équateur")),
+        (CodePays("ER"), LabelPays("Érythrée")),
+        (CodePays("ES"), LabelPays("Espagne")),
+        (CodePays("EE"), LabelPays("Estonie")),
+        (CodePays("VA"), LabelPays("État de la Cité du Vatican")),
+        (CodePays("FM"), LabelPays("États fédérés de Micronésie")),
+        (CodePays("US"), LabelPays("États-Unis")),
+        (CodePays("ET"), LabelPays("Éthiopie")),
+        (CodePays("FJ"), LabelPays("Fidji")),
+        (CodePays("FI"), LabelPays("Finlande")),
+        (CodePays("FR"), LabelPays("France")),
+        (CodePays("GA"), LabelPays("Gabon")),
+        (CodePays("GM"), LabelPays("Gambie")),
+        (CodePays("GE"), LabelPays("Géorgie")),
+        (CodePays("GS"), LabelPays("Géorgie du Sud et les îles Sandwich du Sud")),
+        (CodePays("GH"), LabelPays("Ghana")),
+        (CodePays("GI"), LabelPays("Gibraltar")),
+        (CodePays("GR"), LabelPays("Grèce")),
+        (CodePays("GD"), LabelPays("Grenade")),
+        (CodePays("GL"), LabelPays("Groenland")),
+        (CodePays("GP"), LabelPays("Guadeloupe")),
+        (CodePays("GU"), LabelPays("Guam")),
+        (CodePays("GT"), LabelPays("Guatemala")),
+        (CodePays("GG"), LabelPays("Guernesey")),
+        (CodePays("GN"), LabelPays("Guinée")),
+        (CodePays("GQ"), LabelPays("Guinée équatoriale")),
+        (CodePays("GW"), LabelPays("Guinée-Bissau")),
+        (CodePays("GY"), LabelPays("Guyana")),
+        (CodePays("GF"), LabelPays("Guyane française")),
+        (CodePays("HT"), LabelPays("Haïti")),
+        (CodePays("HN"), LabelPays("Honduras")),
+        (CodePays("HU"), LabelPays("Hongrie")),
+        (CodePays("BV"), LabelPays("Île Bouvet")),
+        (CodePays("CX"), LabelPays("Île Christmas")),
+        (CodePays("CP"), LabelPays("Île Clipperton")),
+        (CodePays("AC"), LabelPays("Île de l'Ascension")),
+        (CodePays("IM"), LabelPays("Île de Man")),
+        (CodePays("NF"), LabelPays("Île Norfolk")),
+        (CodePays("AX"), LabelPays("Îles Åland")),
+        (CodePays("KY"), LabelPays("Îles Caïmans")),
+        (CodePays("IC"), LabelPays("Îles Canaries")),
+        (CodePays("CC"), LabelPays("Îles Cocos - Keeling")),
+        (CodePays("CK"), LabelPays("Îles Cook")),
+        (CodePays("FO"), LabelPays("Îles Féroé")),
+        (CodePays("HM"), LabelPays("Îles Heard et MacDonald")),
+        (CodePays("FK"), LabelPays("Îles Malouines")),
+        (CodePays("MP"), LabelPays("Îles Mariannes du Nord")),
+        (CodePays("MH"), LabelPays("Îles Marshall")),
+        (CodePays("UM"), LabelPays("Îles Mineures Éloignées des États-Unis")),
+        (CodePays("SB"), LabelPays("Îles Salomon")),
+        (CodePays("TC"), LabelPays("Îles Turks et Caïques")),
+        (CodePays("VG"), LabelPays("Îles Vierges britanniques")),
+        (CodePays("VI"), LabelPays("Îles Vierges des États-Unis")),
+        (CodePays("IN"), LabelPays("Inde")),
+        (CodePays("ID"), LabelPays("Indonésie")),
+        (CodePays("IQ"), LabelPays("Irak")),
+        (CodePays("IR"), LabelPays("Iran")),
+        (CodePays("IE"), LabelPays("Irlande")),
+        (CodePays("IS"), LabelPays("Islande")),
+        (CodePays("IL"), LabelPays("Israël")),
+        (CodePays("IT"), LabelPays("Italie")),
+        (CodePays("JM"), LabelPays("Jamaïque")),
+        (CodePays("JP"), LabelPays("Japon")),
+        (CodePays("JE"), LabelPays("Jersey")),
+        (CodePays("JO"), LabelPays("Jordanie")),
+        (CodePays("KZ"), LabelPays("Kazakhstan")),
+        (CodePays("KE"), LabelPays("Kenya")),
+        (CodePays("KG"), LabelPays("Kirghizistan")),
+        (CodePays("KI"), LabelPays("Kiribati")),
+        (CodePays("KW"), LabelPays("Koweït")),
+        (CodePays("LA"), LabelPays("Laos")),
+        (CodePays("LS"), LabelPays("Lesotho")),
+        (CodePays("LV"), LabelPays("Lettonie")),
+        (CodePays("LB"), LabelPays("Liban")),
+        (CodePays("LR"), LabelPays("Libéria")),
+        (CodePays("LY"), LabelPays("Libye")),
+        (CodePays("LI"), LabelPays("Liechtenstein")),
+        (CodePays("LT"), LabelPays("Lituanie")),
+        (CodePays("LU"), LabelPays("Luxembourg")),
+        (CodePays("MK"), LabelPays("Macédoine")),
+        (CodePays("MG"), LabelPays("Madagascar")),
+        (CodePays("MY"), LabelPays("Malaisie")),
+        (CodePays("MW"), LabelPays("Malawi")),
+        (CodePays("MV"), LabelPays("Maldives")),
+        (CodePays("ML"), LabelPays("Mali")),
+        (CodePays("MT"), LabelPays("Malte")),
+        (CodePays("MA"), LabelPays("Maroc")),
+        (CodePays("MQ"), LabelPays("Martinique")),
+        (CodePays("MU"), LabelPays("Maurice")),
+        (CodePays("MR"), LabelPays("Mauritanie")),
+        (CodePays("YT"), LabelPays("Mayotte")),
+        (CodePays("MX"), LabelPays("Mexique")),
+        (CodePays("MD"), LabelPays("Moldavie")),
+        (CodePays("MC"), LabelPays("Monaco")),
+        (CodePays("MN"), LabelPays("Mongolie")),
+        (CodePays("ME"), LabelPays("Monténégro")),
+        (CodePays("MS"), LabelPays("Montserrat")),
+        (CodePays("MZ"), LabelPays("Mozambique")),
+        (CodePays("MM"), LabelPays("Myanmar")),
+        (CodePays("NA"), LabelPays("Namibie")),
+        (CodePays("NR"), LabelPays("Nauru")),
+        (CodePays("NP"), LabelPays("Népal")),
+        (CodePays("NI"), LabelPays("Nicaragua")),
+        (CodePays("NE"), LabelPays("Niger")),
+        (CodePays("NG"), LabelPays("Nigéria")),
+        (CodePays("NU"), LabelPays("Niue")),
+        (CodePays("NO"), LabelPays("Norvège")),
+        (CodePays("NC"), LabelPays("Nouvelle-Calédonie")),
+        (CodePays("NZ"), LabelPays("Nouvelle-Zélande")),
+        (CodePays("OM"), LabelPays("Oman")),
+        (CodePays("UG"), LabelPays("Ouganda")),
+        (CodePays("UZ"), LabelPays("Ouzbékistan")),
+        (CodePays("PK"), LabelPays("Pakistan")),
+        (CodePays("PW"), LabelPays("Palaos")),
+        (CodePays("PA"), LabelPays("Panama")),
+        (CodePays("PG"), LabelPays("Papouasie-Nouvelle-Guinée")),
+        (CodePays("PY"), LabelPays("Paraguay")),
+        (CodePays("NL"), LabelPays("Pays-Bas")),
+        (CodePays("PE"), LabelPays("Pérou")),
+        (CodePays("PH"), LabelPays("Philippines")),
+        (CodePays("PN"), LabelPays("Pitcairn")),
+        (CodePays("PL"), LabelPays("Pologne")),
+        (CodePays("PF"), LabelPays("Polynésie française")),
+        (CodePays("PR"), LabelPays("Porto Rico")),
+        (CodePays("PT"), LabelPays("Portugal")),
+        (CodePays("QA"), LabelPays("Qatar")),
+        (CodePays("HK"), LabelPays("R.A.S. chinoise de Hong Kong")),
+        (CodePays("MO"), LabelPays("R.A.S. chinoise de Macao")),
+        (CodePays("QO"), LabelPays("régions éloignées de l’Océanie")),
+        (CodePays("CF"), LabelPays("République centrafricaine")),
+        (CodePays("CD"), LabelPays("République démocratique du Congo")),
+        (CodePays("DO"), LabelPays("République dominicaine")),
+        (CodePays("CZ"), LabelPays("République tchèque")),
+        (CodePays("RE"), LabelPays("Réunion")),
+        (CodePays("RO"), LabelPays("Roumanie")),
+        (CodePays("GB"), LabelPays("Royaume-Uni")),
+        (CodePays("RU"), LabelPays("Russie")),
+        (CodePays("RW"), LabelPays("Rwanda")),
+        (CodePays("EH"), LabelPays("Sahara occidental")),
+        (CodePays("BL"), LabelPays("Saint-Barthélémy")),
+        (CodePays("KN"), LabelPays("Saint-Kitts-et-Nevis")),
+        (CodePays("SM"), LabelPays("Saint-Marin")),
+        (CodePays("MF"), LabelPays("Saint-Martin")),
+        (CodePays("PM"), LabelPays("Saint-Pierre-et-Miquelon")),
+        (CodePays("VC"), LabelPays("Saint-Vincent-et-les Grenadines")),
+        (CodePays("SH"), LabelPays("Sainte-Hélène")),
+        (CodePays("LC"), LabelPays("Sainte-Lucie")),
+        (CodePays("WS"), LabelPays("Samoa")),
+        (CodePays("AS"), LabelPays("Samoa américaines")),
+        (CodePays("ST"), LabelPays("Sao Tomé-et-Principe")),
+        (CodePays("SN"), LabelPays("Sénégal")),
+        (CodePays("RS"), LabelPays("Serbie")),
+        (CodePays("CS"), LabelPays("Serbie-et-Monténégro")),
+        (CodePays("SC"), LabelPays("Seychelles")),
+        (CodePays("SL"), LabelPays("Sierra Leone")),
+        (CodePays("SG"), LabelPays("Singapour")),
+        (CodePays("SK"), LabelPays("Slovaquie")),
+        (CodePays("SI"), LabelPays("Slovénie")),
+        (CodePays("SO"), LabelPays("Somalie")),
+        (CodePays("SD"), LabelPays("Soudan")),
+        (CodePays("LK"), LabelPays("Sri Lanka")),
+        (CodePays("SE"), LabelPays("Suède")),
+        (CodePays("CH"), LabelPays("Suisse")),
+        (CodePays("SR"), LabelPays("Suriname")),
+        (CodePays("SJ"), LabelPays("Svalbard et Île Jan Mayen")),
+        (CodePays("SZ"), LabelPays("Swaziland")),
+        (CodePays("SY"), LabelPays("Syrie")),
+        (CodePays("TJ"), LabelPays("Tadjikistan")),
+        (CodePays("TW"), LabelPays("Taïwan")),
+        (CodePays("TZ"), LabelPays("Tanzanie")),
+        (CodePays("TD"), LabelPays("Tchad")),
+        (CodePays("TF"), LabelPays("Terres australes françaises")),
+        (CodePays("IO"), LabelPays("Territoire britannique de l'océan Indien")),
+        (CodePays("PS"), LabelPays("Territoire palestinien")),
+        (CodePays("TH"), LabelPays("Thaïlande")),
+        (CodePays("TL"), LabelPays("Timor oriental")),
+        (CodePays("TG"), LabelPays("Togo")),
+        (CodePays("TK"), LabelPays("Tokelau")),
+        (CodePays("TO"), LabelPays("Tonga")),
+        (CodePays("TT"), LabelPays("Trinité-et-Tobago")),
+        (CodePays("TA"), LabelPays("Tristan da Cunha")),
+        (CodePays("TN"), LabelPays("Tunisie")),
+        (CodePays("TM"), LabelPays("Turkménistan")),
+        (CodePays("TR"), LabelPays("Turquie")),
+        (CodePays("TV"), LabelPays("Tuvalu")),
+        (CodePays("UA"), LabelPays("Ukraine")),
+        (CodePays("EU"), LabelPays("Union européenne")),
+        (CodePays("UY"), LabelPays("Uruguay")),
+        (CodePays("VU"), LabelPays("Vanuatu")),
+        (CodePays("VE"), LabelPays("Venezuela")),
+        (CodePays("VN"), LabelPays("Viêt Nam")),
+        (CodePays("WF"), LabelPays("Wallis-et-Futuna")),
+        (CodePays("YE"), LabelPays("Yémen")),
+        (CodePays("ZM"), LabelPays("Zambie")),
+        (CodePays("ZW"), LabelPays("Zimbabwe"))
+    )
 
-	/**
-	 * fromPaysToCode()("États-Unis") == Some("US")
-	 *
-	 * @param ref
-	 * @param pays
-	 * @return
-	 */
-	def fromPaysToCode(ref: Map[CodePays, LabelPays] = listePays)
-	                  (label: LabelPays): Option[CodePays] =
-		ref.flatMap { case (code, pays) =>
-			if (label == pays) Some(code) else None
-		}
-		.headOption
+    /** fromCodeToPays()(CodePays("US")) == Some(LabelPays("États-Unis"))
+      *
+      * @param ref
+      * @param code
+      * @return
+      */
+    def fromCodeToPays(ref: Map[CodePays, LabelPays] = listePays)(code: CodePays): Option[LabelPays] = ref.get(code)
+
+    /** fromPaysToCode()("États-Unis") == Some("US")
+      *
+      * @param ref
+      * @param pays
+      * @return
+      */
+    def fromPaysToCode(ref: Map[CodePays, LabelPays] = listePays)(label: LabelPays): Option[CodePays] =
+        ref.flatMap { case (code, pays) =>
+            if (label == pays) Some(code) else None
+        }
+            .headOption
 
 }

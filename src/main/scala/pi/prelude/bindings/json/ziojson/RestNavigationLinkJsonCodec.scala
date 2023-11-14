@@ -4,8 +4,8 @@ import pi.prelude.http.RestNavigationLink
 import zio.json.{DeriveJsonDecoder, DeriveJsonEncoder, JsonDecoder, JsonEncoder}
 
 object RestNavigationLinkJsonCodec {
-	import HttpVerbJsonCodec.{httpVerbJsonDecoder, httpVerbJsonEncoder}
+    import HttpVerbJsonCodec.{httpVerbJsonDecoder, httpVerbJsonEncoder}
 
-	implicit val restNavigationLinkJsonDecoder: JsonDecoder[RestNavigationLink] = DeriveJsonDecoder.gen[RestNavigationLink]
-	implicit val restNavigationLinkJsonEncoder: JsonEncoder[RestNavigationLink] = DeriveJsonEncoder.gen[RestNavigationLink]
+    implicit val restNavigationLinkJsonDecoder: JsonDecoder[RestNavigationLink] = DeriveJsonDecoder.gen[RestNavigationLink]
+    implicit val restNavigationLinkJsonEncoder: JsonEncoder[RestNavigationLink] = DeriveJsonEncoder.gen[RestNavigationLink]
 }
