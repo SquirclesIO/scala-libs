@@ -1,19 +1,20 @@
 import sbt.Keys.libraryDependencies
 import ApplicationBuildConfig._
 
+scalaVersion := versionOfScala
+crossScalaVersions ++= Seq(versionOfScala, "3.3.1")
+
 lazy val must_back = (project in file("."))
     .settings(
         organization := groupId,
         name := appName,
         version := appVersion,
-        scalaVersion := versionOfScala,
 
         // Scalafix config
         semanticdbEnabled := true, // enable SemanticDB
         semanticdbVersion := scalafixSemanticdb.revision, // only required for Scala 2.x
 
         libraryDependencies ++= appDependencies,
-        crossScalaVersions ++= Seq(versionOfScala, "3.3.1")
     )
 
 // Disable javadoc packaging
