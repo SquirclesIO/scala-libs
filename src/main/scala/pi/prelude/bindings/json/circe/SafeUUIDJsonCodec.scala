@@ -5,9 +5,11 @@ import io.circe.{Codec, DecodingFailure, HCursor, Json}
 import pi.prelude.safeuuid.SafeUUID
 
 object SafeUUIDJsonCodec {
+    import pi.prelude.safeuuid.SafeUUIDSyntax
+
     implicit val safeUUIDJsonCodec: Codec[SafeUUID] = new Codec[SafeUUID] {
         override def apply(a: SafeUUID): Json = Json.fromString(a.safeValue)
         override def apply(c: HCursor): Result[SafeUUID] =
-            c.as[String].flatMap { SafeUUID(_).leftMap { s => DecodingFailure(s, Nil) } }
+            c.as[String].flatMap { SafeUUID(_).left.map { s => DecodingFailure(s, Nil) } }
     }
 }

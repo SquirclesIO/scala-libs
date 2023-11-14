@@ -7,13 +7,13 @@ import zio.prelude.{Bicovariant, Covariant}
 package either {
     sealed trait \/[+E, +A] {
         self =>
-        private final def map0[B](f: A => B): \/[E, B] =
+        private[either] final def map0[B](f: A => B): \/[E, B] =
             self match {
                 case \/-(a) => \/-(f(a))
                 case error@ -\/(_) => error
             }
 
-        private final def mapError0[F](f: E => F): \/[F, A] =
+        private[either] final def mapError0[F](f: E => F): \/[F, A] =
             self match {
                 case -\/(e) => -\/(f(e))
                 case success@ \/-(_) => success

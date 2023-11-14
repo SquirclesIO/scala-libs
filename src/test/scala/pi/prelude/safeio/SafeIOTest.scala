@@ -13,7 +13,7 @@ class SafeIOTest extends AnyFunSuite with should.Matchers {
 
     test("ZIOOptOps compile test - mapOpt for enum") {
         ZIO.succeed(Some(""))
-            .mapOpt { Tutu }
+            .mapOpt { Tutu.apply }
             .getOrElseOpt(Titi)
     }
 }

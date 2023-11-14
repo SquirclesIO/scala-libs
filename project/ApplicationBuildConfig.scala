@@ -6,7 +6,7 @@ import Dependencies._
 object ApplicationBuildConfig {
     val groupId = "org.perfimmo"
     val appName = "pi-prelude"
-    val appVersion = "1.0.2"
+    val appVersion = "2.0.0"
     val versionOfScala = "2.13.12"
 
     val appDependencies =
@@ -35,6 +35,6 @@ object Dependencies {
     ).map(_ % circeVersion)
 
     val testDependencies = Seq(
-        "org.scalatest" %% "scalatest" % "3.2.0" % "test"
+        "org.scalatest" %% "scalatest" % "3.2.17" % Test
     )
 }

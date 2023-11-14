@@ -2,7 +2,7 @@ package pi.prelude.number
 
 import eu.timepit.refined.api.Refined
 import eu.timepit.refined.numeric.GreaterEqual
-import eu.timepit.refined.{refineMV, refineV}
+import eu.timepit.refined.refineV
 
 private[number] trait PositiveIntModule {
 
@@ -15,9 +15,6 @@ private[number] trait PositiveIntModule {
     type PositiveIntPredicate = GreaterEqual[0]
 
     object PositiveInt {
-
-        /** vérification à la compilation */
-        val build = refineMV[PositiveIntPredicate]
 
         /** évaluation au runtime */
         def eval(v: Int): Either[String, PositiveInt] = refineV(v)

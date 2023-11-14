@@ -3,10 +3,13 @@ package pi.prelude.number
 import org.scalatest.funsuite.AnyFunSuite
 import org.scalatest.matchers.should
 
+import scala.annotation.nowarn
+
+@nowarn("msg=discarded non-Unit value")
 class PositiveDoubleTest extends AnyFunSuite with should.Matchers {
     test("a positive double should be >= 0") {
-        PositiveDouble(0).map { _.toDouble } shouldBe Right(0d) : Unit
-        PositiveDouble(145.34).map { _.toDouble } shouldBe Right(145.34) : Unit
+        PositiveDouble(0).map { _.toDouble } shouldBe Right(0d)
+        PositiveDouble(145.34).map { _.toDouble } shouldBe Right(145.34)
         PositiveDouble(-145.34).map { _.toDouble } shouldBe Left("-145.34 is not >= 0")
     }
 }

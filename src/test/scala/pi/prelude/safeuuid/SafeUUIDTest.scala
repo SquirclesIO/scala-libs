@@ -4,13 +4,15 @@ import org.scalatest.funsuite.AnyFunSuite
 import org.scalatest.matchers.should
 
 import java.util.UUID
+import scala.annotation.nowarn
 
+@nowarn("msg=discarded non-Unit value")
 class SafeUUIDTest extends AnyFunSuite with should.Matchers {
     val randomUUID = UUID.randomUUID()
 
     test("check if safe UUID is used") {
         val correctUid = randomUUID.toString
-        SafeUUID(correctUid).fold(error => fail(error), ok => ok.safeValue shouldBe correctUid) : Unit
+        SafeUUID(correctUid).fold(error => fail(error), ok => ok.safeValue shouldBe correctUid)
 
         val unsafeUid = "toto"
         SafeUUID(unsafeUid).fold(
@@ -20,7 +22,7 @@ class SafeUUIDTest extends AnyFunSuite with should.Matchers {
     }
 
     test("build direct SafeUUID from java.util.UUID") {
-        SafeUUID(randomUUID).safeValue shouldBe randomUUID.toString : Unit
+        SafeUUID(randomUUID).safeValue shouldBe randomUUID.toString
         SafeUUID(UUID.fromString(randomUUID.toString)).safeValue shouldBe randomUUID.toString
     }
 
@@ -29,14 +31,14 @@ class SafeUUIDTest extends AnyFunSuite with should.Matchers {
         val safe2 = SafeUUID(randomUUID)
         val safe3 = SafeUUID.generate
 
-        safe1 shouldBe safe2 : Unit
-        safe1 == safe2 shouldBe true : Unit
-        safe1 == safe3 shouldBe false : Unit
-        safe1 != safe3 shouldBe true : Unit
+        safe1 shouldBe safe2
+        safe1 == safe2 shouldBe true
+        safe1 == safe3 shouldBe false
+        safe1 != safe3 shouldBe true
 
-        safe1 === safe2 shouldBe true : Unit
-        safe1 === safe3 shouldBe false : Unit
-        safe1 != safe3 shouldBe true : Unit
+        safe1 === safe2 shouldBe true
+        safe1 === safe3 shouldBe false
+        safe1 != safe3 shouldBe true
         safe1 != safe2 shouldBe false
     }
 }
