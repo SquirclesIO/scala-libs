@@ -5,8 +5,8 @@ import org.scalatest.matchers.should
 
 class PositiveDoubleTest extends AnyFunSuite with should.Matchers {
     test("a positive double should be >= 0") {
-        PositiveDouble(0).map { _.toDouble } shouldBe Right(0d)
-        PositiveDouble(145.34).map { _.toDouble } shouldBe Right(145.34)
+        PositiveDouble(0).map { _.toDouble } shouldBe Right(0d) : Unit
+        PositiveDouble(145.34).map { _.toDouble } shouldBe Right(145.34) : Unit
         PositiveDouble(-145.34).map { _.toDouble } shouldBe Left("-145.34 is not >= 0")
     }
 }

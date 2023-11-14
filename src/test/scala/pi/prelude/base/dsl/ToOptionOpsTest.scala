@@ -5,8 +5,8 @@ import org.scalatest.matchers.should
 
 class ToOptionOpsTest extends AnyFunSuite with should.Matchers {
     test("could use .some suffix on any value") {
-        "toto".some shouldBe Some("toto")
-        1.some shouldBe Some(1)
+        "toto".some shouldBe Some("toto") : Unit
+        1.some shouldBe Some(1) : Unit
         List(1).some shouldBe Some(List(1))
     }
 }

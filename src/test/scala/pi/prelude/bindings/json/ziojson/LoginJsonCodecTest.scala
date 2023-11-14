@@ -13,7 +13,7 @@ class LoginJsonCodecTest extends AnyFunSuite with should.Matchers {
         implicit val TotoJsonEncoder = DeriveJsonEncoder.gen[Toto]
         implicit val TotoJsonDecoder = DeriveJsonDecoder.gen[Toto]
 
-        Login("login").map { Toto(_).toJson } shouldBe Right("""{"l":"login"}""")
+        Login("login").map { Toto(_).toJson } shouldBe Right("""{"l":"login"}""") : Unit
         """{"l":"login"}""".fromJson[Toto] shouldBe Login("login").map { Toto }
     }
 

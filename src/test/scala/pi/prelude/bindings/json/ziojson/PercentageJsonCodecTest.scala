@@ -12,7 +12,7 @@ class PercentageJsonCodecTest extends AnyFunSuite with should.Matchers {
         implicit val TotoJsonEncoder = DeriveJsonEncoder.gen[Toto]
         implicit val TotoJsonDecoder = DeriveJsonDecoder.gen[Toto]
 
-        Percentage(12).map { Toto(_).toJson } shouldBe Right("""{"p":12.0}""")
+        Percentage(12).map { Toto(_).toJson } shouldBe Right("""{"p":12.0}""") : Unit
         """{"p":12.0}""".fromJson[Toto] shouldBe Percentage(12).map { Toto }
     }
 
@@ -23,8 +23,8 @@ class PercentageJsonCodecTest extends AnyFunSuite with should.Matchers {
         implicit val TotoJsonEncoder = DeriveJsonEncoder.gen[Toto]
         implicit val TotoJsonDecoder = DeriveJsonDecoder.gen[Toto]
 
-        Percentage(12).map { Toto(_).toJson } shouldBe Right("""{"p":12.0}""")
-        """{"p":12.0}""".fromJson[Toto] shouldBe Percentage(12).map { Toto }
+        Percentage(12).map { Toto(_).toJson } shouldBe Right("""{"p":12.0}""") : Unit
+        """{"p":12.0}""".fromJson[Toto] shouldBe Percentage(12).map { Toto } : Unit
 
         Percentage(12).map { Toto }.map { _.toJson.fromJson[Toto] } shouldBe Right(Percentage(12).map { Toto })
     }

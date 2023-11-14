@@ -4,18 +4,19 @@ import pi.prelude.either.\/._
 import zio.ZIO
 import zio.prelude.{Bicovariant, Covariant}
 
-package object either {
-    sealed trait \/[+E, +A] { self =>
+package either {
+    sealed trait \/[+E, +A] {
+        self =>
         private final def map0[B](f: A => B): \/[E, B] =
             self match {
-                case \/-(a)         => \/-(f(a))
-                case error @ -\/(_) => error
+                case \/-(a) => \/-(f(a))
+                case error@ -\/(_) => error
             }
 
         private final def mapError0[F](f: E => F): \/[F, A] =
             self match {
-                case -\/(e)           => -\/(f(e))
-                case success @ \/-(_) => success
+                case -\/(e) => -\/(f(e))
+                case success@ \/-(_) => success
             }
 
         def toEither: Either[E, A] = self match {
@@ -23,6 +24,9 @@ package object either {
             case \/.\/-(x) => Right(x)
         }
     }
+}
+
+package object either {
 
     object \/ {
         final case class -\/[+E](e: E) extends (E \/ Nothing)

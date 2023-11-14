@@ -10,7 +10,7 @@ class SafeUUIDTest extends AnyFunSuite with should.Matchers {
 
     test("check if safe UUID is used") {
         val correctUid = randomUUID.toString
-        SafeUUID(correctUid).fold(error => fail(error), ok => ok.safeValue shouldBe correctUid)
+        SafeUUID(correctUid).fold(error => fail(error), ok => ok.safeValue shouldBe correctUid) : Unit
 
         val unsafeUid = "toto"
         SafeUUID(unsafeUid).fold(
@@ -20,7 +20,7 @@ class SafeUUIDTest extends AnyFunSuite with should.Matchers {
     }
 
     test("build direct SafeUUID from java.util.UUID") {
-        SafeUUID(randomUUID).safeValue shouldBe randomUUID.toString
+        SafeUUID(randomUUID).safeValue shouldBe randomUUID.toString : Unit
         SafeUUID(UUID.fromString(randomUUID.toString)).safeValue shouldBe randomUUID.toString
     }
 
@@ -29,14 +29,14 @@ class SafeUUIDTest extends AnyFunSuite with should.Matchers {
         val safe2 = SafeUUID(randomUUID)
         val safe3 = SafeUUID.generate
 
-        safe1 shouldBe safe2
-        safe1 == safe2 shouldBe true
-        safe1 == safe3 shouldBe false
-        safe1 != safe3 shouldBe true
+        safe1 shouldBe safe2 : Unit
+        safe1 == safe2 shouldBe true : Unit
+        safe1 == safe3 shouldBe false : Unit
+        safe1 != safe3 shouldBe true : Unit
 
-        safe1 === safe2 shouldBe true
-        safe1 === safe3 shouldBe false
-        safe1 != safe3 shouldBe true
+        safe1 === safe2 shouldBe true : Unit
+        safe1 === safe3 shouldBe false : Unit
+        safe1 != safe3 shouldBe true : Unit
         safe1 != safe2 shouldBe false
     }
 }
