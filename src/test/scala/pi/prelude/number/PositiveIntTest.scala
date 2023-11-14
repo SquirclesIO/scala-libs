@@ -1,15 +1,13 @@
 package pi.prelude.number
 
-import org.scalatest.funsuite.AnyFunSuite
-import org.scalatest.matchers.should
+import zio.test.{assertTrue, ZIOSpecDefault}
 
-import scala.annotation.nowarn
-
-@nowarn("msg=discarded non-Unit value")
-class PositiveIntTest extends AnyFunSuite with should.Matchers {
-    test("positive Int is always positive") {
-        PositiveInt.eval(0).map { _.value } shouldBe Right(0)
-        PositiveInt.eval(42).map { _.value } shouldBe Right(42)
-        PositiveInt.eval(-1) shouldBe Left("Predicate (-1 < 0) did not fail.")
-    }
+object PositiveIntTest extends ZIOSpecDefault {
+    val spec = suite("PositiveInt")(
+        test("positive Int is always positive") {
+            assertTrue(PositiveInt.eval(0).map { _.value } == Right(0)) &&
+            assertTrue(PositiveInt.eval(42).map { _.value } == Right(42)) &&
+            assertTrue(PositiveInt.eval(-1) == Left("Predicate (-1 < 0) did not fail."))
+        }
+    )
 }

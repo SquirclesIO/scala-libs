@@ -35,6 +35,7 @@ object Dependencies {
     ).map(_ % circeVersion)
 
     val testDependencies = Seq(
-        "org.scalatest" %% "scalatest" % "3.2.17" % Test
+        "dev.zio" %% "zio-test" % zio_version % Test,
+        "dev.zio" %% "zio-test-sbt" % zio_version % Test
     )
 }

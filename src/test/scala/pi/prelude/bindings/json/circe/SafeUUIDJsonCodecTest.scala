@@ -2,29 +2,28 @@ package pi.prelude.bindings.json.circe
 
 import io.circe.syntax._
 import io.circe.{DecodingFailure, Json}
-import org.scalatest.funsuite.AnyFunSuite
-import org.scalatest.matchers.should
 import pi.prelude.safeuuid.SafeUUID
+import zio.test.{assertTrue, ZIOSpecDefault}
 
-class SafeUUIDJsonCodecTest extends AnyFunSuite with should.Matchers {
+object SafeUUIDJsonCodecTest extends ZIOSpecDefault {
     import SafeUUIDJsonCodec.safeUUIDJsonCodec
 
-    test("SafeUUID Json read") {
-        val uid = SafeUUID.generate.toString
-        Json.fromString(uid).as[SafeUUID] shouldBe Right(uid)
-    }
+    val spec = suite("SafeUUIDJsonCodec")(
+        test("SafeUUID Json read") {
+            val uid = SafeUUID.generate
+            assertTrue(Json.fromString(uid.toString).as[SafeUUID] == Right(uid))
+        },
+        test("SafeUUID Json read error") {
+            val uid = "toto"
+            assertTrue(Json.fromString(uid).as[SafeUUID] == Left(DecodingFailure(
+                "[toto] has not the good format (need SHA-256 String format)",
+                List()
+            )))
+        },
+        test("SafeUUID Json write") {
+            val uid = SafeUUID.generate
 
-    test("SafeUUID Json read error") {
-        val uid = "toto"
-        Json.fromString(uid).as[SafeUUID] shouldBe Left(DecodingFailure(
-            "[toto] has not the good format (need SHA-256 String format)",
-            List()
-        ))
-    }
-
-    test("SafeUUID Json write") {
-        val uid = SafeUUID.generate
-
-        uid.asJson shouldBe Json.fromString(uid.toString)
-    }
+            assertTrue(uid.asJson == Json.fromString(uid.toString))
+        }
+    )
 }

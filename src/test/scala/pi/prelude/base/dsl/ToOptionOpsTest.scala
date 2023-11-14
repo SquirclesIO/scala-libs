@@ -1,15 +1,13 @@
 package pi.prelude.base.dsl
 
-import org.scalatest.funsuite.AnyFunSuite
-import org.scalatest.matchers.should
+import zio.test.{ZIOSpecDefault, assertTrue}
 
-import scala.annotation.nowarn
-
-@nowarn("msg=discarded non-Unit value")
-class ToOptionOpsTest extends AnyFunSuite with should.Matchers {
-    test("could use .some suffix on any value") {
-        "toto".some shouldBe Some("toto")
-        1.some shouldBe Some(1)
-        List(1).some shouldBe Some(List(1))
-    }
+object ToOptionOpsTest extends ZIOSpecDefault {
+    val spec = suite("ToOptionOps")(
+        test("could use .some suffix on any value") {
+            assertTrue("toto".some == Some("toto")) &&
+            assertTrue(1.some == Some(1)) &&
+            assertTrue(List(1).some == Some(List(1)))
+        }
+    )
 }

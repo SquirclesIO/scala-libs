@@ -1,26 +1,24 @@
 package pi.prelude.string
 
-import org.scalatest.funsuite.AnyFunSuite
-import org.scalatest.matchers.should
+import zio.test.{assertTrue, ZIOSpecDefault}
 
 import scala.annotation.unused
 
-class PrintClassNameOpsTest extends AnyFunSuite with should.Matchers with PrintClassNameOps {
-    test("should show name of class") {
-        clazzStringRepr(new Juju(0)) shouldBe "Juju"
-    }
-
-    test("should show name of case class") {
-        clazzStringRepr(Toto("titi")) shouldBe "Toto"
-    }
-
-    test("should show case object's name") {
-        clazzStringRepr(Tutu) shouldBe "Tutu"
-    }
-
-    test("should show Object's name") {
-        clazzStringRepr(Popo) shouldBe "Popo"
-    }
+object PrintClassNameOpsTest extends ZIOSpecDefault {
+    val spec = suite("PrintClassNameOps")(
+        test("should show name of class") {
+            assertTrue(clazzStringRepr(new Juju(0)) == "Juju")
+        },
+        test("should show name of case class") {
+            assertTrue(clazzStringRepr(Toto("titi")) == "Toto")
+        },
+        test("should show case object's name") {
+            assertTrue(clazzStringRepr(Tutu) == "Tutu")
+        },
+        test("should show Object's name") {
+            assertTrue(clazzStringRepr(Popo) == "Popo")
+        }
+    )
 
     class Juju(@unused i: Int)
     case class Toto(s: String)

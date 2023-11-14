@@ -13,8 +13,6 @@ lazy val must_back = (project in file("."))
         semanticdbVersion := scalafixSemanticdb.revision, // only required for Scala 2.x
 
         libraryDependencies ++= appDependencies,
-
-
         crossScalaVersions ++= Seq(versionOfScala, "3.3.1")
     )
 

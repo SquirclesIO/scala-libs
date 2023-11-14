@@ -1,24 +1,22 @@
 package pi.prelude.base.dsl
 
-import org.scalatest.funsuite.AnyFunSuite
-import org.scalatest.matchers.should
 import zio.prelude.Validation
+import zio.test.{assertTrue, ZIOSpecDefault}
 
-import scala.annotation.nowarn
+object ToValidationOps extends ZIOSpecDefault {
+    val spec = suite("ToValidationOps")(
+        test("could use .vsucceed suffix on any value") {
+            assertTrue("toto".vsucceed == Validation.succeed("toto")) &&
+            assertTrue(1.vsucceed == Validation.succeed(1)) &&
+            assertTrue(List(1).vsucceed == Validation.succeed(List(1))) &&
+            assertTrue(None.vsucceed == Validation.succeed(None)) &&
+            assertTrue(Some(1).vsucceed == Validation.succeed(Some(1)))
+        },
+        test("could use .vfail suffix on any value") {
+            assertTrue("toto".vfail == Validation.fail("toto")) &&
+            assertTrue(1.vfail == Validation.fail(1)) &&
+            assertTrue(List(1).vfail == Validation.fail(List(1)))
+        }
+    )
 
-@nowarn("msg=discarded non-Unit value")
-class ToValidationOps extends AnyFunSuite with should.Matchers {
-    test("could use .vsucceed suffix on any value") {
-        "toto".vsucceed shouldBe Validation.succeed("toto")
-        1.vsucceed shouldBe Validation.succeed(1)
-        List(1).vsucceed shouldBe Validation.succeed(List(1))
-        None.vsucceed shouldBe Validation.succeed(None)
-        Some(1).vsucceed shouldBe Validation.succeed(Some(1))
-    }
-
-    test("could use .vfail suffix on any value") {
-        "toto".vfail shouldBe Validation.fail("toto")
-        1.vfail shouldBe Validation.fail(1)
-        List(1).vfail shouldBe Validation.fail(List(1))
-    }
 }

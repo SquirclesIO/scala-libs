@@ -6,7 +6,7 @@ import java.util.UUID
 import scala.util.{Failure, Success, Try}
 
 package object safeuuid {
-    private[safeuuid] object SafeUUIDT extends Newtype[String]
+    private[safeuuid] object SafeUUIDT extends Newtype[String] {}
     type SafeUUID = SafeUUIDT.Type
 
     object SafeUUID {
@@ -18,6 +18,8 @@ package object safeuuid {
         def apply(javaUUID: UUID): SafeUUID = SafeUUIDT(javaUUID.toString)
 
         def generate: SafeUUID = SafeUUIDT(java.util.UUID.randomUUID().toString)
+
+        implicit val safeUuidEqual: Equal[SafeUUID] = Equal.default
     }
 
     implicit class SafeUUIDSyntax(private val self: SafeUUID) extends AnyVal {

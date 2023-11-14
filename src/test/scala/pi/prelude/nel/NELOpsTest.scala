@@ -1,18 +1,16 @@
 package pi.prelude.nel
 
-import org.scalatest.funsuite.AnyFunSuite
-import org.scalatest.matchers.should
+import zio.test.{ZIOSpecDefault, assertTrue}
 
-import scala.annotation.nowarn
 import scala.collection.compat.immutable.ArraySeq
 
-@nowarn("msg=discarded non-Unit value")
-class NELOpsTest extends AnyFunSuite with should.Matchers {
-    test("toNEL function") {
-        List(1).toNEL shouldBe Some(nel(1))
-        ArraySeq(1).toNEL shouldBe Some(nel(1))
-
-        Nil.toNEL shouldBe None
-        ArraySeq.empty[Int].toNEL shouldBe None
-    }
+object NELOpsTest extends ZIOSpecDefault {
+    val spec = suite("NELOps")(
+        test("toNEL function") {
+            assertTrue(List(1).toNEL == Some(nel(1))) &&
+            assertTrue(ArraySeq(1).toNEL == Some(nel(1))) &&
+            assertTrue(Nil.toNEL == None) &&
+            assertTrue(ArraySeq.empty[Int].toNEL == None)
+        }
+    )
 }

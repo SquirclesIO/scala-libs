@@ -1,15 +1,14 @@
 package pi.prelude.number
 
-import org.scalatest.funsuite.AnyFunSuite
-import org.scalatest.matchers.should
+import zio.test.{ZIOSpecDefault, assertTrue}
 
-import scala.annotation.nowarn
-
-@nowarn("msg=discarded non-Unit value")
-class PositiveDoubleTest extends AnyFunSuite with should.Matchers {
+object PositiveDoubleTest extends ZIOSpecDefault {
+    val spec = suite("PositiveDouble") (
     test("a positive double should be >= 0") {
-        PositiveDouble(0).map { _.toDouble } shouldBe Right(0d)
-        PositiveDouble(145.34).map { _.toDouble } shouldBe Right(145.34)
-        PositiveDouble(-145.34).map { _.toDouble } shouldBe Left("-145.34 is not >= 0")
+        assertTrue(PositiveDouble(0).map { _.toDouble } == Right(0d)) &&
+        assertTrue(PositiveDouble(145.34).map { _.toDouble } == Right(145.34)) &&
+        assertTrue(PositiveDouble(-145.34).map { _.toDouble } == Left("-145.34 is not >= 0"))
     }
+    )
+
 }
