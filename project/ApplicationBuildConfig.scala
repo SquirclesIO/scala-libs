@@ -6,8 +6,8 @@ import Dependencies._
 object ApplicationBuildConfig {
     val groupId = "org.perfimmo"
     val appName = "pi-prelude"
-    val appVersion = "2.0.1"
-    val versionOfScala = "2.13.12"
+    val appVersion = "2.0.2"
+    val versionOfScala = "2.13.15"
 
     val appDependencies =
         zioDependencies ++
@@ -16,23 +16,23 @@ object ApplicationBuildConfig {
 }
 
 object Dependencies {
-    val zio_version = "2.0.19"
-    val zio_prelude_version = "1.0.0-RC21"
-    val circeVersion = "0.14.6"
+    val zio_version = "2.1.9"
+    val zio_json_version = "0.7.1"
+    val circeVersion = "0.14.10"
 
     val zioDependencies = Seq(
         "dev.zio" %% "zio" % zio_version,
         "dev.zio" %% "zio-streams" % zio_version,
-        "dev.zio" %% "zio-prelude" % zio_prelude_version,
-        "dev.zio" %% "zio-json" % "0.6.2",
-        "dev.zio" %% "zio-json-interop-refined" % "0.6.2"
+        "dev.zio" %% "zio-prelude" % "1.0.0-RC31",
+        "dev.zio" %% "zio-json" % zio_json_version,
+        "dev.zio" %% "zio-json-interop-refined" % zio_json_version
     )
 
     val circeDeps = Seq(
-        "io.circe" %% "circe-core",
-        "io.circe" %% "circe-generic",
-        "io.circe" %% "circe-parser"
-    ).map(_ % circeVersion)
+        "io.circe" %% "circe-core" % circeVersion,
+        "io.circe" %% "circe-generic" % circeVersion,
+        "io.circe" %% "circe-parser" % circeVersion
+    )
 
     val testDependencies = Seq(
         "dev.zio" %% "zio-test" % zio_version % Test,
