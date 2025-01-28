@@ -6,8 +6,8 @@ import Dependencies._
 object ApplicationBuildConfig {
     val groupId = "org.perfimmo"
     val appName = "pi-prelude"
-    val appVersion = "2.0.2"
-    val versionOfScala = "2.13.15"
+    val appVersion = "2.0.3"
+    val versionOfScala = "2.13.16"
 
     val appDependencies =
         zioDependencies ++
@@ -16,8 +16,8 @@ object ApplicationBuildConfig {
 }
 
 object Dependencies {
-    val zio_version = "2.1.9"
-    val zio_json_version = "0.7.1"
+    val zio_version = "2.1.14"
+    val zio_json_version = "0.7.9"
     val circeVersion = "0.14.10"
 
     val zioDependencies = Seq(
