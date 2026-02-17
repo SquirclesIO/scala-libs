@@ -3,7 +3,7 @@ package pi.prelude.safeuuid
 import pi.prelude.safeuuid.SafeUUID.safeUuidEqual
 import zio.prelude._
 import zio.test.Assertion.{isFalse, isTrue}
-import zio.test.{ZIOSpecDefault, assert, assertTrue}
+import zio.test.{assert, assertTrue, ZIOSpecDefault}
 
 import java.util.UUID
 

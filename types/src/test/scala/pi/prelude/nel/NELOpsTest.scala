@@ -1,6 +1,6 @@
 package pi.prelude.nel
 
-import zio.test.{ZIOSpecDefault, assertTrue}
+import zio.test.{assertTrue, ZIOSpecDefault}
 
 import scala.collection.compat.immutable.ArraySeq
 

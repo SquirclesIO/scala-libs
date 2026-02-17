@@ -9,14 +9,14 @@ package either {
         self =>
         private[either] final def map0[B](f: A => B): \/[E, B] =
             self match {
-                case \/-(a) => \/-(f(a))
-                case error@ -\/(_) => error
+                case \/-(a)         => \/-(f(a))
+                case error @ -\/(_) => error
             }
 
         private[either] final def mapError0[F](f: E => F): \/[F, A] =
             self match {
-                case -\/(e) => -\/(f(e))
-                case success@ \/-(_) => success
+                case -\/(e)           => -\/(f(e))
+                case success @ \/-(_) => success
             }
 
         def toEither: Either[E, A] = self match {

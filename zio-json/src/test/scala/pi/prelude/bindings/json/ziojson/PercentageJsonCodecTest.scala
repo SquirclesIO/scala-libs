@@ -7,7 +7,7 @@ object PercentageJsonCodecTest extends ZIOSpecDefault {
     val spec = suite("PercentageJsonCodec")(
         test("do same with custom decoder/encoder") {
             import zio.json._
-            import PercentageJsonCodec.given 
+            import PercentageJsonCodec.given
 
             implicit val TotoJsonEncoder: JsonEncoder[Toto] = DeriveJsonEncoder.gen
             implicit val TotoJsonDecoder: JsonDecoder[Toto] = DeriveJsonDecoder.gen

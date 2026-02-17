@@ -1,17 +1,18 @@
 package pi.prelude.number
 
-import io.github.iltotore.iron.{:|, refineEither}
 import io.github.iltotore.iron.constraint.numeric.Interval.Closed
 import io.github.iltotore.iron.constraint.numeric.Positive0
+import io.github.iltotore.iron.{:|, refineEither}
 
 /** Number between 0 & 100
- *
- * val p: Percentage = ???
- * val res: Double = p.value
- */
+  *
+  * val p: Percentage = ???
+  *
+  * val res: Double = p.value
+  */
 type Percentage = Double :| PercentageConstraint
 
-type PercentageConstraint =  Closed[0d, 100d]
+type PercentageConstraint = Closed[0d, 100d]
 
 object Percentage:
     def apply(v: Double): Either[String, Percentage] = v.refineEither

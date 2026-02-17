@@ -1,5 +1,6 @@
 import sbt.Keys.libraryDependencies
 import Dependencies.{circeDependencies, ironDependencies, testDependencies, zioDependencies, zioJsonDependencies}
+import org.typelevel.sbt.tpolecat.DevMode
 
 ThisBuild / organization := "io.squircles"
 ThisBuild / scalaVersion := "3.3.7"
@@ -42,3 +43,7 @@ publishTo := {
     if (isSnapshot.value) Some("snapshots" at nexus + "/maven-snapshots/")
     else Some("releases" at nexus + "/maven-releases/")
 }
+
+ThisBuild / tpolecatDefaultOptionsMode := DevMode
+
+addCommandAlias("lint", "scalafixAll; scalafmtAll; scalafmtSbt")

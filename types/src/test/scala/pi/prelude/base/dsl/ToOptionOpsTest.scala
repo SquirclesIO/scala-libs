@@ -1,6 +1,6 @@
 package pi.prelude.base.dsl
 
-import zio.test.{ZIOSpecDefault, assertTrue}
+import zio.test.{assertTrue, ZIOSpecDefault}
 
 object ToOptionOpsTest extends ZIOSpecDefault {
     val spec = suite("ToOptionOps")(

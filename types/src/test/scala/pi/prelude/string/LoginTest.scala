@@ -1,6 +1,6 @@
 package pi.prelude.string
 
-import zio.test.{ZIOSpecDefault, assertTrue}
+import zio.test.{assertTrue, ZIOSpecDefault}
 
 object LoginTest extends ZIOSpecDefault {
     val spec = suite("Login")(
