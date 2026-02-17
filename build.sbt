@@ -1,23 +1,33 @@
 import sbt.Keys.libraryDependencies
-import ApplicationBuildConfig._
+import Dependencies.{circeDependencies, ironDependencies, testDependencies, zioDependencies, zioJsonDependencies}
 
-lazy val must_back = (project in file("."))
+ThisBuild / organization := "io.squircles"
+ThisBuild / scalaVersion := "3.3.7"
+ThisBuild / version := "2.0.4"
+ThisBuild / semanticdbEnabled := true // required for scalafix
+
+lazy val root_project = (project in file("."))
     .settings(
-        organization := groupId,
-        name := appName,
-        version := appVersion,
-        scalaVersion := versionOfScala,
+        name := "lib"
+    ).aggregate(`types`, `circe`, `zio-json`)
 
-        // Scalafix config
-        semanticdbEnabled := true, // enable SemanticDB
-        semanticdbVersion := scalafixSemanticdb.revision, // only required for Scala 2.x
-
-        libraryDependencies ++= appDependencies,
-        crossScalaVersions := Seq(versionOfScala, "3.3.4")
+lazy val `types` = (project in file("types"))
+    .settings(
+        name := "lib-types",
+        libraryDependencies ++= zioDependencies ++ ironDependencies ++ testDependencies
     )
 
-// Disable javadoc packaging
-mappings in (Compile, packageDoc) := Seq()
+lazy val `circe` = (project in file("circe"))
+    .settings(
+        name := "lib-circe",
+        libraryDependencies ++= circeDependencies ++ testDependencies
+    ).dependsOn(`types`)
+
+lazy val `zio-json` = (project in file("zio-json"))
+    .settings(
+        name := "lib-zio-json",
+        libraryDependencies ++= zioJsonDependencies ++ testDependencies
+    ).dependsOn(`types`)
 
 credentials += Credentials(
     "Sonatype Nexus Repository Manager",
