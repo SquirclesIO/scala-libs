@@ -4,24 +4,24 @@ stages:
 
 test:
   stage: test
-  image: hseeberger/scala-sbt:graalvm-ce-20.0.0-java11_1.3.13_2.13.3
+  image: sbtscala/scala-sbt:graalvm-ce-22.3.3-b1-java17_1.12.3_3.3.7
   variables:
-    SCALA_VERSION: 2.13.12
+    SBT_TPOLECAT_CI: 1
   cache:
     key: "$CI_PROJECT_NAME"
     paths:
       - .ivy2
   script:
-    - sbt -ivy .ivy2 "+ clean; + test"
+    - sbt -ivy .ivy2 "clean; test"
 
 publish:
   stage: publish
-  image: hseeberger/scala-sbt:graalvm-ce-20.0.0-java11_1.3.13_2.13.3
+  image: sbtscala/scala-sbt:graalvm-ce-22.3.3-b1-java17_1.12.3_3.3.7
   cache:
     key: "$CI_PROJECT_NAME"
     paths:
       - .ivy2
   script:
-    - sbt -ivy .ivy2 "+ publish"
+    - sbt -ivy .ivy2 "publish"
   except:
    - tags
