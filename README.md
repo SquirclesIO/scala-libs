@@ -1,17 +1,11 @@
-# PI PRELUDE
+# Squircles Libs
 
-Une collection d'utilitaires et de types riche aidant à la programmation des projets perfimmo.
-
-## TO deploy on nexus
-
-made by CI
+Une collection d'utilitaires et de types riches aidant à la programmation des projets squircles.
 
 ## Install with sbt
 
-`"org.perfimmo" %% "pi-prelude" % "2.0.2"`
-
-## Exemples
-
-### SafeUUID
-
-### NoCaseString
+```
+"io.squircles" %% "libs-types" % "2.0.4"
+"io.squircles" %% "libs-circe" % "2.0.4"
+"io.squircles" %% "libs-zio-json" % "2.0.4"
+```
