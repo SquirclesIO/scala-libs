@@ -4,7 +4,7 @@ import org.typelevel.sbt.tpolecat.DevMode
 
 ThisBuild / organization := "io.squircles"
 ThisBuild / scalaVersion := "3.3.7"
-ThisBuild / version := "2.0.4"
+ThisBuild / version := "2.0.5"
 ThisBuild / semanticdbEnabled := true // required for scalafix
 
 lazy val root_project = (project in file("."))
@@ -30,14 +30,14 @@ lazy val `zio-json` = (project in file("zio-json"))
         libraryDependencies ++= zioJsonDependencies ++ testDependencies
     ).dependsOn(`types`)
 
-credentials += Credentials(
+ThisBuild / credentials += Credentials(
     "Sonatype Nexus Repository Manager",
     "team.performance.immo",
     sys.env.get("NEXUS_USER").getOrElse(""),
     sys.env.get("NEXUS_PWD").getOrElse("")
 )
 
-publishTo := {
+ThisBuild / publishTo := {
     val nexus = "https://team.performance.immo/nexus/repository"
 
     if (isSnapshot.value) Some("snapshots" at nexus + "/maven-snapshots/")
