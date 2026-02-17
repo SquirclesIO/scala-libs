@@ -6,6 +6,6 @@ import zio.json.{DeriveJsonDecoder, DeriveJsonEncoder, JsonDecoder, JsonEncoder}
 object RestNavigationLinkJsonCodec {
     import HttpVerbJsonCodec.{httpVerbJsonDecoder, httpVerbJsonEncoder}
 
-    implicit val restNavigationLinkJsonDecoder: JsonDecoder[RestNavigationLink] = DeriveJsonDecoder.gen[RestNavigationLink]
-    implicit val restNavigationLinkJsonEncoder: JsonEncoder[RestNavigationLink] = DeriveJsonEncoder.gen[RestNavigationLink]
+    given restNavigationLinkJsonDecoder: JsonDecoder[RestNavigationLink] = DeriveJsonDecoder.gen[RestNavigationLink]
+    given restNavigationLinkJsonEncoder: JsonEncoder[RestNavigationLink] = DeriveJsonEncoder.gen[RestNavigationLink]
 }

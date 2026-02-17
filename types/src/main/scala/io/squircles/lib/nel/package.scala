@@ -1,13 +1,15 @@
-package io.squircles.lib
+package io.squircles.lib.nel
 
+import io.squircles.lib.number.PositiveInt
 import zio.prelude.NonEmptyList
 
-package object nel {
-    type NEL[+A] = NonEmptyList[A]
+import scala.collection.View
 
-    def nel[A](x: A, xs: A*): NonEmptyList[A] = NonEmptyList(x, xs: _*)
+type NEL[+A] = NonEmptyList[A]
 
-    implicit class NELOps[A](xs: Seq[A]) {
-        def toNEL: Option[NonEmptyList[A]] = xs.headOption.map { h => nel[A](h, xs.tail: _*) }
-    }
-}
+def nel[A](x: A, xs: A*): NonEmptyList[A] = NonEmptyList(x, xs*)
+
+extension [A](xs: Seq[A]) def toNEL: Option[NonEmptyList[A]] = NonEmptyList.fromIterableOption(xs)
+
+def iterate[A](initial: A, count: PositiveInt)(next: A => A): NonEmptyList[A] =
+    NonEmptyList.fromIterable(initial, View.iterate(next(initial), count - 1)(next))

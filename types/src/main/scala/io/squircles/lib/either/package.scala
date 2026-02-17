@@ -1,7 +1,7 @@
 package io.squircles.lib.either
 
 import io.squircles.lib.either.either.\/
-import io.squircles.lib.either.either.\/.*
+import io.squircles.lib.either.either.\/._
 import zio.ZIO
 import zio.prelude.{Bicovariant, Covariant}
 
@@ -53,21 +53,21 @@ package object either {
 }
 
 sealed trait \/[+E, +A] {
-        self =>
-        private[either] final def map0[B](f: A => B): \/[E, B] =
-            self match {
-                case \/-(a)         => \/-(f(a))
-                case error @ -\/(_) => error
-            }
-
-        private[either] final def mapError0[F](f: E => F): \/[F, A] =
-            self match {
-                case -\/(e)           => -\/(f(e))
-                case success @ \/-(_) => success
-            }
-
-        def toEither: Either[E, A] = self match {
-            case \/.-\/(e) => Left(e)
-            case \/.\/-(x) => Right(x)
+    self =>
+    private[either] final def map0[B](f: A => B): \/[E, B] =
+        self match {
+            case \/-(a)         => \/-(f(a))
+            case error @ -\/(_) => error
         }
+
+    private[either] final def mapError0[F](f: E => F): \/[F, A] =
+        self match {
+            case -\/(e)           => -\/(f(e))
+            case success @ \/-(_) => success
+        }
+
+    def toEither: Either[E, A] = self match {
+        case \/.-\/(e) => Left(e)
+        case \/.\/-(x) => Right(x)
     }
+}

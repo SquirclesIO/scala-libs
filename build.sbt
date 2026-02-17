@@ -4,7 +4,7 @@ import org.typelevel.sbt.tpolecat.DevMode
 
 ThisBuild / organization := "io.squircles"
 ThisBuild / scalaVersion := "3.3.7"
-ThisBuild / version := "2.0.5"
+ThisBuild / version := "2.0.6"
 ThisBuild / semanticdbEnabled := true // required for scalafix
 
 lazy val root_project = (project in file("."))

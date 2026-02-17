@@ -1,7 +1,7 @@
 package io.squircles.lib.bindings.json.ziojson
 
 import io.squircles.lib.number.Percentage
-import zio.test.{ZIOSpecDefault, assertTrue}
+import zio.test.{assertTrue, ZIOSpecDefault}
 
 object PercentageJsonCodecTest extends ZIOSpecDefault {
     val spec = suite("PercentageJsonCodec")(

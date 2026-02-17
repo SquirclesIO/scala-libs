@@ -1,7 +1,7 @@
 package io.squircles.lib.bindings.json.ziojson
 
 import io.squircles.lib.string.Login
-import zio.test.{ZIOSpecDefault, assertTrue}
+import zio.test.{assertTrue, ZIOSpecDefault}
 
 object LoginJsonCodecTest extends ZIOSpecDefault {
     val spec = suite("LoginJsonCodec")(
