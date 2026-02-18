@@ -11,7 +11,7 @@ object NELSpec extends ZIOSpecDefault:
 
     def genPositiveInt(min: PositiveInt, max: PositiveInt): Gen[Any, PositiveInt] =
         Gen.int(min, max)
-            .map(PositiveInt.eval)
+            .map(PositiveInt.either)
             .collect { case Right(value) => value }
 
     val spec = suite("NonEmptyList")(

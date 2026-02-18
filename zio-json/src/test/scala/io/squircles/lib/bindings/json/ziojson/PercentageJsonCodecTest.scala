@@ -12,19 +12,9 @@ object PercentageJsonCodecTest extends ZIOSpecDefault {
             implicit val TotoJsonEncoder: JsonEncoder[Toto] = DeriveJsonEncoder.gen
             implicit val TotoJsonDecoder: JsonDecoder[Toto] = DeriveJsonDecoder.gen
 
-            assertTrue(Percentage(12).map {
-                Toto(_).toJson
-            } == Right("""{"p":12.0}""")) &&
-            assertTrue("""{"p":12.0}""".fromJson[Toto] == Percentage(12).map {
-                Toto.apply
-            }) &&
-            assertTrue(Percentage(12).map {
-                Toto.apply
-            }.map {
-                _.toJson.fromJson[Toto]
-            } == Right(Percentage(12).map {
-                Toto.apply
-            }))
+            assertTrue(Percentage.either(12).map { Toto(_).toJson } == Right("""{"p":12.0}""")) &&
+            assertTrue("""{"p":12.0}""".fromJson[Toto] == Percentage.either(12).map { Toto.apply }) &&
+            assertTrue(Percentage.either(12).map { Toto.apply }.map { _.toJson.fromJson[Toto] } == Right(Percentage.either(12).map { Toto.apply }))
         }
     )
 
