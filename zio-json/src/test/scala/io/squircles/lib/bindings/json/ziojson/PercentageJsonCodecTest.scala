@@ -14,7 +14,9 @@ object PercentageJsonCodecTest extends ZIOSpecDefault {
 
             assertTrue(Percentage.either(12).map { Toto(_).toJson } == Right("""{"p":12.0}""")) &&
             assertTrue("""{"p":12.0}""".fromJson[Toto] == Percentage.either(12).map { Toto.apply }) &&
-            assertTrue(Percentage.either(12).map { Toto.apply }.map { _.toJson.fromJson[Toto] } == Right(Percentage.either(12).map { Toto.apply }))
+            assertTrue(Percentage.either(12).map { Toto.apply }.map { _.toJson.fromJson[Toto] } == Right(Percentage.either(12).map {
+                Toto.apply
+            }))
         }
     )
 

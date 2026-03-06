@@ -1,7 +1,8 @@
 package io.squircles.lib.number
 
-import PositiveDouble.value
 import zio.test.{assertTrue, ZIOSpecDefault}
+
+import PositiveDouble.value
 
 object PositiveDoubleTest extends ZIOSpecDefault {
     val spec = suite("PositiveDouble")(

@@ -1,7 +1,8 @@
 package io.squircles.lib.number
 
+import zio.test.{assertTrue, ZIOSpecDefault}
+
 import Percentage.value
-import zio.test.{ZIOSpecDefault, assertTrue}
 
 object PercentageTest extends ZIOSpecDefault {
     val spec = suite("Percentage")(

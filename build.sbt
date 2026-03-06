@@ -30,20 +30,16 @@ lazy val `zio-json` = (project in file("zio-json"))
         libraryDependencies ++= zioJsonDependencies ++ testDependencies
     ).dependsOn(`types`)
 
+ThisBuild / publishTo := Some("GitHub SquirclesIO Apache Maven Packages" at "https://maven.pkg.github.com/SquirclesIO/scala-libs")
+ThisBuild / publishMavenStyle := true
 ThisBuild / credentials += Credentials(
-    "Sonatype Nexus Repository Manager",
-    "team.performance.immo",
-    sys.env.get("NEXUS_USER").getOrElse(""),
-    sys.env.get("NEXUS_PWD").getOrElse("")
+    "GitHub Package Registry",
+    "maven.pkg.github.com",
+    "SquirclesIO",
+    sys.env.get("GITHUB_TOKEN").getOrElse("")
 )
-
-ThisBuild / publishTo := {
-    val nexus = "https://team.performance.immo/nexus/repository"
-
-    if (isSnapshot.value) Some("snapshots" at nexus + "/maven-snapshots/")
-    else Some("releases" at nexus + "/maven-releases/")
-}
 
 ThisBuild / tpolecatDefaultOptionsMode := DevMode
 
 addCommandAlias("lint", "scalafixAll; scalafmtAll; scalafmtSbt")
+addCommandAlias("check", "scalafmtCheckAll; scalafmtSbtCheck")
