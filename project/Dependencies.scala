@@ -1,10 +1,16 @@
 import sbt._
 
 object Dependencies {
+
+    implicit class Ops(self: Seq[ModuleID]) {
+        def asTest: Seq[ModuleID] = self.map(_ % Test)
+    }
+
     val circeVersion = "0.14.15"
     val ironVersion = "3.3.0"
     val zioJsonVersion = "0.7.14"
     val zioVersion = "2.1.24"
+    val doobieVersion = "1.0.0-RC11"
 
     val zioDependencies = Seq(
         "dev.zio" %% "zio" % zioVersion,
@@ -24,12 +30,23 @@ object Dependencies {
         "io.github.iltotore" %% "iron-circe" % ironVersion
     )
 
+    val dbDependencies = Seq(
+        "dev.zio" %% "zio-interop-cats" % "23.1.0.13",
+        "org.tpolecat" %% "doobie-core" % doobieVersion,
+        "org.tpolecat" %% "doobie-postgres" % doobieVersion,
+        "org.tpolecat" %% "doobie-hikari" % doobieVersion
+    )
+
+    val dbTestDependencies = Seq(
+        "com.dimafeng" %% "testcontainers-scala-postgresql" % "0.44.1"
+    )
+
     val ironDependencies = Seq(
         "io.github.iltotore" %% "iron" % ironVersion
     )
 
-    val testDependencies = Seq(
-        "dev.zio" %% "zio-test" % zioVersion % Test,
-        "dev.zio" %% "zio-test-sbt" % zioVersion % Test
+    val testDependencies: Seq[ModuleID] = Seq(
+        "dev.zio" %% "zio-test" % zioVersion,
+        "dev.zio" %% "zio-test-sbt" % zioVersion
     )
 }
