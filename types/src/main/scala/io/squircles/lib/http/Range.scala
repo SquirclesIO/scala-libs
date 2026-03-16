@@ -1,6 +1,6 @@
 package io.squircles.lib.http
 
-import io.squircles.lib.number.PositiveInt
+import io.squircles.lib.number.{NonNegativeInt, PositiveInt}
 
 /** Représente un range d'API Http
   * @param offset
@@ -8,4 +8,4 @@ import io.squircles.lib.number.PositiveInt
   * @param limit
   *   le nombre limite à récupérer
   */
-case class Range(offset: PositiveInt, limit: PositiveInt)
+case class Range(offset: NonNegativeInt, limit: PositiveInt)
